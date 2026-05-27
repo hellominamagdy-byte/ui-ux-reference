@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UI/UX Complete Reference — Mina Magdy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Cairo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d0d0d;--bg2:#111;--bg3:#181818;--card:#1a1a1a;--card-h:#222;--border:#2a2a2a;--border-h:#404040;--text:#fff;--muted:#888;--dim:#444;--accent:#f97316;--accent-h:#ea6c0a;--free-bg:#0a2218;--free:#4ade80;--fm-bg:#1f1800;--fm:#fbbf24;--paid-bg:#200d12;--paid:#f87171}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+header{padding:48px 40px 40px;border-bottom:1px solid var(--border);max-width:1200px;margin:0 auto}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;border:1px solid rgba(249,115,22,.25);padding:4px 12px;border-radius:99px;margin-bottom:20px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:blink 2.4s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+h1{font-size:clamp(28px,4.5vw,52px);font-weight:800;line-height:1.15;letter-spacing:-.02em;color:#fff}
+h1 .hl{color:var(--accent)}
+.stats{display:flex;gap:32px;margin-top:28px;flex-wrap:wrap}
+.stat-n{font-size:30px;font-weight:800;color:var(--accent);letter-spacing:-.02em}
+.stat-l{font-size:10px;color:var(--muted);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-top:2px}
+.toolbar{position:sticky;top:0;z-index:100;background:rgba(13,13,13,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.toolbar-inner{max-width:1200px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;gap:12px;height:56px}
+.tabs{display:flex;gap:5px;flex:1;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{padding:6px 14px;border-radius:99px;font-size:12px;font-weight:600;font-family:'Poppins',sans-serif;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--muted);transition:all .15s;white-space:nowrap}
+.tab:hover{border-color:var(--border-h);color:#fff}
+.tab.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.search-wrap{position:relative;flex-shrink:0;width:200px}
+.search-wrap input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px 8px 32px;font-size:13px;font-family:'Poppins',sans-serif;color:#fff;outline:none;transition:border .2s}
+.search-wrap input:focus{border-color:var(--accent)}
+.search-wrap input::placeholder{color:var(--dim)}
+.si{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:13px;pointer-events:none}
+main{max-width:1200px;margin:0 auto;padding:36px 40px 80px}
+.sec{margin-bottom:52px;display:none}
+.sec.on{display:block !important}
+.sec-hdr{margin-bottom:20px}
+.sec-title h2{font-size:18px;font-weight:700;color:#fff;letter-spacing:-.01em}
+.sub-label{font-size:10px;text-transform:uppercase;letter-spacing:.12em;font-weight:700;color:var(--muted);margin:22px 0 10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:10px;margin-bottom:4px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:8px;transition:background .15s,border-color .15s,transform .15s;min-height:148px}
+.card:hover{background:var(--card-h);border-color:var(--border-h);transform:translateY(-1px)}
+.card.hid{display:none}
+.card-top{display:flex;align-items:center;justify-content:space-between}
+.card-badges{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.bdg{font-size:9px;font-weight:700;padding:2px 7px;border-radius:99px;text-transform:uppercase;letter-spacing:.05em}
+.f{background:var(--free-bg);color:var(--free)}
+.fm{background:var(--fm-bg);color:var(--fm)}
+.pd{background:var(--paid-bg);color:var(--paid)}
+.bdg-figma{background:rgba(249,115,22,.12);color:var(--accent);font-size:9px;font-weight:700;padding:2px 6px;border-radius:99px;border:1px solid rgba(249,115,22,.3)}
+.bdg-svg{background:rgba(74,222,128,.1);color:var(--free);font-size:9px;font-weight:700;padding:2px 6px;border-radius:99px;border:1px solid rgba(74,222,128,.25)}
+.card-name-row{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.card-name{font-size:14px;font-weight:700;color:#fff;display:flex;align-items:center;gap:5px;letter-spacing:-.01em}
+.hot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0;animation:blink 2s infinite}
+.card-actions{display:flex;gap:4px;align-items:center;flex-shrink:0}
+.copy-btn,.tr-btn{display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:6px;border:1px solid var(--border);background:transparent;cursor:pointer;transition:all .15s;color:var(--muted);font-size:11px;font-family:'Poppins',sans-serif;font-weight:600}
+.copy-btn:hover{border-color:var(--accent);color:var(--accent)}
+.copy-btn.copied{border-color:var(--free);color:var(--free)}
+.tr-btn:hover{border-color:#a78bfa;color:#a78bfa}
+.tr-btn.on{border-color:#a78bfa;color:#a78bfa;background:rgba(167,139,250,.1)}
+.card-en{font-size:12px;color:#ccc;line-height:1.5;font-weight:400;flex:1}
+.card-ar{font-family:'Cairo',sans-serif;direction:rtl;font-size:12px;color:#bbb;line-height:1.5;display:none;flex:1;font-weight:500}
+.card-ar.show{display:block}
+.card-url{font-size:10px;color:var(--accent);opacity:0;transition:opacity .15s;font-weight:600}
+.card:hover .card-url{opacity:1}
+
+/* DASHBOARD */
+.dash-section{margin-bottom:26px}
+.dash-sec-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.dash-sec-title{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+.dash-sec-del{font-size:10px;color:var(--dim);cursor:pointer;padding:2px 8px;border-radius:5px;border:1px solid var(--border);background:transparent;font-family:'Poppins',sans-serif;transition:all .15s;display:none}
+.dash-sec-del:hover{border-color:var(--paid);color:var(--paid)}
+.edit-mode .dash-sec-del{display:block}
+.dash-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(162px,1fr));gap:8px}
+.site-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:11px 13px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:background .15s,border-color .15s;text-decoration:none;position:relative}
+.site-card:hover{background:var(--card-h);border-color:var(--border-h)}
+.site-favicon{width:28px;height:28px;border-radius:6px;background:var(--bg3);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
+.site-favicon img{width:20px;height:20px;object-fit:contain}
+.site-info{flex:1;min-width:0}
+.site-name{font-size:12px;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.site-domain{font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.site-del{position:absolute;top:5px;right:5px;width:17px;height:17px;border-radius:4px;background:rgba(248,113,113,.15);border:1px solid rgba(248,113,113,.3);display:none;align-items:center;justify-content:center;font-size:9px;color:#f87171;cursor:pointer;line-height:1}
+.site-del:hover{background:rgba(248,113,113,.3)}
+.edit-mode .site-del{display:flex}
+.dash-actions{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.dash-btn{padding:7px 14px;border-radius:7px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:12px;font-weight:600;font-family:'Poppins',sans-serif;cursor:pointer;transition:all .15s}
+.dash-btn:hover{border-color:var(--border-h);color:#fff}
+.dash-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.add-row{display:none;margin-top:10px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:14px 16px;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.add-row.visible{display:flex}
+.add-row label{font-size:10px;color:var(--muted);display:block;margin-bottom:4px;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.add-row input,.add-row select{background:var(--card);border:1px solid var(--border);border-radius:7px;padding:8px 12px;font-size:13px;font-family:'Poppins',sans-serif;color:#fff;outline:none;transition:border .15s;width:100%}
+.add-row input:focus{border-color:var(--accent)}
+.add-inp{flex:1;min-width:120px}
+.btn-ok{padding:9px 16px;border-radius:7px;background:var(--accent);border:none;color:#fff;font-size:12px;font-weight:700;font-family:'Poppins',sans-serif;cursor:pointer;white-space:nowrap}
+.btn-ok:hover{background:var(--accent-h)}
+.btn-no{padding:9px 12px;border-radius:7px;background:transparent;border:1px solid var(--border);color:var(--muted);font-size:12px;font-weight:600;font-family:'Poppins',sans-serif;cursor:pointer}
+.btn-no:hover{border-color:#555;color:#fff}
+
+.empty{display:none;text-align:center;padding:60px 20px;color:var(--muted)}
+.empty h3{font-size:18px;font-weight:700;color:#fff;margin-bottom:6px}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(16px);background:var(--bg3);border:1px solid var(--border);color:#fff;font-size:12px;font-weight:600;font-family:'Poppins',sans-serif;padding:8px 18px;border-radius:99px;opacity:0;transition:all .22s;pointer-events:none;z-index:9999;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+footer{text-align:center;padding:24px 40px;border-top:1px solid var(--border);color:var(--dim);font-size:11px;font-family:'Poppins',sans-serif;letter-spacing:.04em}
+@media(max-width:768px){header,main{padding-left:16px;padding-right:16px}.toolbar-inner{padding:0 16px}.grid{grid-template-columns:1fr 1fr}.dash-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}h1{font-size:24px}.stats{gap:20px}.stat-n{font-size:22px}.search-wrap{width:140px}}
+@media(max-width:420px){.grid,.dash-grid{grid-template-columns:1fr 1fr}h1{font-size:20px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow"><span class="dot"></span> UI/UX Complete Reference</div>
+  <h1>Your <span class="hl">Design</span> Arsenal<br>Everything in One Place</h1>
+  <div class="stats">
+    <div><div class="stat-n">150+</div><div class="stat-l">Resources</div></div>
+    <div><div class="stat-n">40+</div><div class="stat-l">Figma Plugins</div></div>
+    <div><div class="stat-n">10</div><div class="stat-l">Categories</div></div>
+    <div><div class="stat-n">2026</div><div class="stat-l">Updated</div></div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <div class="tabs">
+      <button class="tab on" onclick="st('all',this)">All</button>
+      <button class="tab" onclick="st('dashboard',this)">My Dashboard</button>
+      <button class="tab" onclick="st('icons',this)">Icons</button>
+      <button class="tab" onclick="st('components',this)">Components</button>
+      <button class="tab" onclick="st('wireframe',this)">Wireframe</button>
+      <button class="tab" onclick="st('figma',this)">Figma Plugins</button>
+      <button class="tab" onclick="st('illustrations',this)">Illustrations</button>
+      <button class="tab" onclick="st('colors',this)">Colors & Fonts</button>
+      <button class="tab" onclick="st('kits',this)">UI Kits</button>
+      <button class="tab" onclick="st('tools',this)">Tools & CSS</button>
+    </div>
+    <div class="search-wrap">
+      <span class="si">⌕</span>
+      <input type="text" id="si" placeholder="Search..." oninput="go()">
+      <span id="clrBtn" onclick="clearSearch()" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);color:var(--muted);cursor:pointer;font-size:14px;display:none">✕</span>
+    </div>
+  </div>
+</div>
+
+<main>
+<div class="empty" id="emp"><h3>No results found 😅</h3><p>Try a different keyword</p></div>
+
+<div class="sec on" data-cat="dashboard">
+  <div class="sec-hdr"><div class="sec-title"><h2>My Dashboard</h2></div></div>
+  <div class="dash-actions">
+    <button class="dash-btn" id="addSiteBtn" onclick="showAddSite()">+ Add Site</button>
+    <button class="dash-btn" id="addSecBtn" onclick="showAddSec()">+ New Section</button>
+    <button class="dash-btn" id="editBtn" onclick="toggleEdit()">Edit</button>
+  </div>
+  <div id="addSiteRow" class="add-row">
+    <div class="add-inp"><label>Site Name</label><input id="inName" placeholder="e.g. Figma"></div>
+    <div class="add-inp"><label>URL</label><input id="inUrl" placeholder="https://figma.com"></div>
+    <div class="add-inp"><label>Section</label><select id="inSec" style="background:var(--card);border:1px solid var(--border);border-radius:7px;padding:8px 12px;font-size:13px;font-family:Poppins,sans-serif;color:#fff;outline:none;width:100%"></select></div>
+    <button class="btn-ok" onclick="addSite()">Add</button>
+    <button class="btn-no" onclick="cancelAdd()">Cancel</button>
+  </div>
+  <div id="addSecRow" class="add-row">
+    <div class="add-inp"><label>Section Name</label><input id="inSecName" placeholder="e.g. Social Media"></div>
+    <button class="btn-ok" onclick="addSection()">Create</button>
+    <button class="btn-no" onclick="cancelAddSec()">Cancel</button>
+  </div>
+  <div id="dashContainer"></div>
+</div>
+
+
+<div class="sec on" data-cat="icons">
+  <div class="sec-hdr"><div class="sec-title"><h2>Icons Libraries</h2></div></div>
+  <div class="sub-label">Best for Figma — Direct Import or Plugin</div>
+  <div class="grid">
+    <a class="card" href="https://iconify.design" target="_blank" data-k="iconify figma plugin icons all 200000">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span><span class="bdg-figma">Figma ✓</span><span class="bdg-svg">SVG</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Iconify')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Iconify<span class="hot"></span></span></div>
+      <div class="card-en">200,000+ icons from all libraries — best Figma plugin, search & insert any icon directly</div>
+      <div class="card-ar">أكبر مكتبة أيقونات — بلاجن Figma رسمي، ابحث وأضف أي أيقون مباشرة</div>
+      <div class="card-url">↗ iconify.design</div>
+    </a>
+    <a class="card" href="https://tabler.io/icons" target="_blank" data-k="tabler icons figma plugin stroke 5800">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span><span class="bdg-figma">Figma ✓</span><span class="bdg-svg">SVG</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Tabler Icons')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Tabler Icons<span class="hot"></span></span></div>
+      <div class="card-en">5800+ clean stroke icons, MIT license — official Figma plugin available</div>
+      <div class="card-ar">5800+ أيقون stroke نظيف — بلاجن Figma رسمي</div>
+      <div class="card-url">↗ tabler.io</div>
+    </a>
+    <a class="card" href="https://lucide.dev" target="_blank" data-k="lucide icons svg react tailwind figma">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span><span class="bdg-figma">Figma ✓</span><span class="bdg-svg">SVG</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Lucide Icons')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Lucide Icons<span class="hot"></span></span></div>
+      <div class="card-en">1400+ consistent SVG icons — most popular in React & Tailwind, Figma plugin available</div>
+      <div class="card-ar">1400+ أيقون SVG متسق — الأشهر في React وTailwind</div>
+      <div class="card-url">↗ lucide.dev</div>
+    </a>
+    <a class="card" href="https://phosphoricons.com" target="_blank" data-k="phosphor icons weights duotone figma kit">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span><span class="bdg-figma">Figma ✓</span><span class="bdg-svg">SVG</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Phosphor Icons')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Phosphor Icons</span></div>
+      <div class="card-en">9000+ icons in 6 weights: Thin, Light, Regular, Bold, Fill, Duotone — Figma kit included</div>
+      <div class="card-ar">9000+ أيقون بـ 6 أوزان — Figma kit مرفق</div>
+      <div class="card-url">↗ phosphoricons.com</div>
+    </a>
+    <a class="card" href="https://heroicons.com" target="_blank" data-k="heroicons tailwind figma outline solid">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span><span class="bdg-figma">Figma ✓</span><span class="bdg-svg">SVG</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Heroicons')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Heroicons</span></div>
+      <div class="card-en">By Tailwind creators — outline & solid, React/Vue ready, Figma assets included</div>
+      <div class="card-ar">من صانعي Tailwind — outline وsolid، Figma assets مرفقة</div>
+      <div class="card-url">↗ heroicons.com</div>
+    </a>
+    <a class="card" href="https://remixicon.com" target="_blank" data-k="remix icon line fill figma download">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span><span class="bdg-figma">Figma ✓</span><span class="bdg-svg">SVG</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Remix Icon')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Remix Icon</span></div>
+      <div class="card-en">2800+ Line & Fill icons — Figma file downloadable, great for web & mobile UI</div>
+      <div class="card-ar">2800+ أيقون Line وFill — ملف Figma للتحميل</div>
+      <div class="card-url">↗ remixicon.com</div>
+    </a>
+    <a class="card" href="https://feathericons.com" target="_blank" data-k="feather icons minimalist svg mobile">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span><span class="bdg-svg">SVG</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Feather Icons')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Feather Icons</span></div>
+      <div class="card-en">Minimalist 1px stroke icons — lightweight, SVG, perfect for mobile UI</div>
+      <div class="card-ar">أيقونات minimalist خفيفة — SVG، مثالية للـ mobile UI</div>
+      <div class="card-url">↗ feathericons.com</div>
+    </a>
+    <a class="card" href="https://fontawesome.com" target="_blank" data-k="font awesome brand icons cdn figma">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span><span class="bdg-figma">Figma ✓</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Font Awesome')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Font Awesome</span></div>
+      <div class="card-en">2000+ free icons + brand icons — CDN ready, Figma plugin available</div>
+      <div class="card-ar">2000+ أيقون مجاني + brand icons — CDN جاهز</div>
+      <div class="card-url">↗ fontawesome.com</div>
+    </a>
+  </div>
+  <div class="sub-label">Stock Icons & Marketplaces</div>
+  <div class="grid">
+    <a class="card" href="https://www.flaticon.com" target="_blank" data-k="flaticon millions png svg lottie figma">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span><span class="bdg-figma">Figma ✓</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Flaticon')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Flaticon</span></div>
+      <div class="card-en">Millions of icons & stickers — PNG, SVG, Lottie, Figma plugin available</div>
+      <div class="card-ar">ملايين الأيقونات والـ stickers — PNG وSVG وLottie</div>
+      <div class="card-url">↗ flaticon.com</div>
+    </a>
+    <a class="card" href="https://icons8.com" target="_blank" data-k="icons8 style consistent figma plugin">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span><span class="bdg-figma">Figma ✓</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Icons8')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Icons8</span></div>
+      <div class="card-en">Icons, illustrations & photos in consistent style families — Figma plugin</div>
+      <div class="card-ar">أيقونات وصور وillustrations بأسلوب موحد — بلاجن Figma</div>
+      <div class="card-url">↗ icons8.com</div>
+    </a>
+    <a class="card" href="https://www.svgrepo.com" target="_blank" data-k="svgrepo free svg shapes patterns">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span><span class="bdg-svg">SVG</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'SVG Repo')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">SVG Repo</span></div>
+      <div class="card-en">500,000+ free SVGs — icons, shapes, patterns & illustrations, download instantly</div>
+      <div class="card-ar">500,000+ SVG مجاني — أيقونات وأشكال وpatterns</div>
+      <div class="card-url">↗ svgrepo.com</div>
+    </a>
+    <a class="card" href="https://hugeicons.com" target="_blank" data-k="hugeicons stroke rounded sharp figma">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span><span class="bdg-figma">Figma ✓</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Hugeicons')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Hugeicons</span></div>
+      <div class="card-en">4000+ quality icons in stroke, rounded & sharp — Figma kit available</div>
+      <div class="card-ar">4000+ أيقون بجودة عالية — Figma kit متاح</div>
+      <div class="card-url">↗ hugeicons.com</div>
+    </a>
+    <a class="card" href="https://thenounproject.com" target="_blank" data-k="noun project icons figma plugin">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span><span class="bdg-figma">Figma ✓</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'The Noun Project')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">The Noun Project</span></div>
+      <div class="card-en">5M+ icons & photos — massive collection, Figma plugin available</div>
+      <div class="card-ar">5 مليون+ أيقون — مجموعة ضخمة، بلاجن Figma متاح</div>
+      <div class="card-url">↗ thenounproject.com</div>
+    </a>
+  </div>
+</div>
+
+
+<div class="sec on" data-cat="components">
+  <div class="sec-hdr"><div class="sec-title"><h2>UI Components & Frameworks</h2></div></div>
+  <div class="sub-label">For Figma Designers</div>
+  <div class="grid">
+    <a class="card" href="https://www.untitledui.com" target="_blank" data-k="untitled ui figma kit design system free">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span><span class="bdg-figma">Figma ✓</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Untitled UI')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Untitled UI<span class="hot"></span></span></div>
+      <div class="card-en">Largest free Figma UI kit — full design system, variables, dark mode, 50+ pages</div>
+      <div class="card-ar">أضخم Figma Kit مجاني — نظام تصميم كامل مع variables ودارك مود</div>
+      <div class="card-url">↗ untitledui.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community" target="_blank" data-k="figma community kits templates free">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span><span class="bdg-figma">Figma ✓</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Figma Community')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Figma Community<span class="hot"></span></span></div>
+      <div class="card-en">Thousands of free UI kits, templates & components directly in Figma</div>
+      <div class="card-ar">آلاف الـ kits والـ templates المجانية مباشرة في Figma</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.ui8.net" target="_blank" data-k="ui8 figma kits marketplace premium">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span><span class="bdg-figma">Figma ✓</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'UI8')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">UI8</span></div>
+      <div class="card-en">Premium & free Figma UI kits, icons & templates marketplace</div>
+      <div class="card-ar">سوق Figma kits مدفوعة ومجانية عالية الجودة</div>
+      <div class="card-url">↗ ui8.net</div>
+    </a>
+    <a class="card" href="https://freebiesui.com" target="_blank" data-k="freebies ui figma sketch free kits">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span><span class="bdg-figma">Figma ✓</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Freebies UI')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Freebies UI</span></div>
+      <div class="card-en">Free Figma & Sketch UI kits updated regularly</div>
+      <div class="card-ar">كيتات UI مجانية لـ Figma وSketch محدّثة بانتظام</div>
+      <div class="card-url">↗ freebiesui.com</div>
+    </a>
+  </div>
+  <div class="sub-label">For Developers — React & Tailwind</div>
+  <div class="grid">
+    <a class="card" href="https://ui.shadcn.com" target="_blank" data-k="shadcn ui react components copy paste 2025">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'shadcn/ui')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">shadcn/ui<span class="hot"></span></span></div>
+      <div class="card-en">#1 React component library 2025 — buttons, navbars, modals, tables, copy-paste</div>
+      <div class="card-ar">الأشهر في React — زراير ونافبار وموودالز وجداول</div>
+      <div class="card-url">↗ ui.shadcn.com</div>
+    </a>
+    <a class="card" href="https://flowbite.com" target="_blank" data-k="flowbite tailwind html react vue angular">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Flowbite')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Flowbite</span></div>
+      <div class="card-en">600+ Tailwind components — HTML, React, Vue & Angular ready</div>
+      <div class="card-ar">600+ كومبوننت Tailwind — HTML وReact وVue جاهزة</div>
+      <div class="card-url">↗ flowbite.com</div>
+    </a>
+    <a class="card" href="https://daisyui.com" target="_blank" data-k="daisyui tailwind plugin themes">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'daisyUI')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">daisyUI</span></div>
+      <div class="card-en">Tailwind plugin with ready themes — zero extra JS components</div>
+      <div class="card-ar">Plugin Tailwind — ثيمات جاهزة بدون JS إضافي</div>
+      <div class="card-url">↗ daisyui.com</div>
+    </a>
+    <a class="card" href="https://magicui.design" target="_blank" data-k="magic ui animated react components effects">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Magic UI')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Magic UI<span class="hot"></span></span></div>
+      <div class="card-en">50+ animated React components — sparkles, beams, orbs, meteors</div>
+      <div class="card-ar">50+ كومبوننت React متحرك — sparkles وbeams وorbs</div>
+      <div class="card-url">↗ magicui.design</div>
+    </a>
+    <a class="card" href="https://ui.aceternity.com" target="_blank" data-k="aceternity ui motion effects landing page">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Aceternity UI')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Aceternity UI<span class="hot"></span></span></div>
+      <div class="card-en">Stunning motion effects & animated components for landing pages</div>
+      <div class="card-ar">تأثيرات وحركات مودرن — مثالية لصفحات الـ landing</div>
+      <div class="card-url">↗ ui.aceternity.com</div>
+    </a>
+    <a class="card" href="https://www.radix-ui.com" target="_blank" data-k="radix ui primitives accessible unstyled">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Radix UI')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Radix UI</span></div>
+      <div class="card-en">Unstyled accessible primitives — foundation of shadcn/ui</div>
+      <div class="card-ar">primitives accessible بدون تصميم — أساس shadcn/ui</div>
+      <div class="card-url">↗ radix-ui.com</div>
+    </a>
+    <a class="card" href="https://headlessui.com" target="_blank" data-k="headless ui accessible unstyled tailwind">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Headless UI')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Headless UI</span></div>
+      <div class="card-en">Fully accessible unstyled components — bring your own CSS</div>
+      <div class="card-ar">كومبوننتس accessible بدون تصميم — من صانعي Tailwind</div>
+      <div class="card-url">↗ headlessui.com</div>
+    </a>
+    <a class="card" href="https://mui.com" target="_blank" data-k="material ui mui react google design">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Material UI')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Material UI</span></div>
+      <div class="card-en">React components following Google Material Design — massive ecosystem</div>
+      <div class="card-ar">كومبوننتس React بتصميم Google Material</div>
+      <div class="card-url">↗ mui.com</div>
+    </a>
+    <a class="card" href="https://chakra-ui.com" target="_blank" data-k="chakra ui react accessible customizable">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Chakra UI')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Chakra UI</span></div>
+      <div class="card-en">Accessible React components, highly customizable with style props</div>
+      <div class="card-ar">كومبوننتس React accessible وقابلة للتخصيص</div>
+      <div class="card-url">↗ chakra-ui.com</div>
+    </a>
+    <a class="card" href="https://getbootstrap.com" target="_blank" data-k="bootstrap html css js grid framework">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Bootstrap')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Bootstrap</span></div>
+      <div class="card-en">Timeless HTML/CSS/JS framework — grid, components, responsive</div>
+      <div class="card-ar">الكلاسيكي — HTML/CSS/JS مع grid system كامل</div>
+      <div class="card-url">↗ getbootstrap.com</div>
+    </a>
+    <a class="card" href="https://ant.design" target="_blank" data-k="ant design alibaba enterprise dashboard">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Ant Design')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Ant Design</span></div>
+      <div class="card-en">Enterprise design system by Alibaba — perfect for dashboards</div>
+      <div class="card-ar">نظام تصميم ضخم من Alibaba — مثالي للـ dashboards</div>
+      <div class="card-url">↗ ant.design</div>
+    </a>
+  </div>
+  <div class="sub-label">AI-Powered Component Generators</div>
+  <div class="grid">
+    <a class="card" href="https://v0.dev" target="_blank" data-k="v0 vercel ai generate react tailwind components">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'v0 by Vercel')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">v0 by Vercel<span class="hot"></span></span></div>
+      <div class="card-en">AI generates React + Tailwind components from text prompts — copy code instantly</div>
+      <div class="card-ar">AI يولّد React + Tailwind components من وصف نصي — انسخ الكود فورًا</div>
+      <div class="card-url">↗ v0.dev</div>
+    </a>
+    <a class="card" href="https://www.usegalileo.ai" target="_blank" data-k="galileo ai ui generator screens components">
+      <div class="card-top"><div class="card-badges"><span class="bdg pd">Paid</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Galileo AI')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Galileo AI<span class="hot"></span></span></div>
+      <div class="card-en">AI UI generator — generate full screens & components from text</div>
+      <div class="card-ar">AI يولّد شاشات وكومبوننتس كاملة من النص</div>
+      <div class="card-url">↗ usegalileo.ai</div>
+    </a>
+    <a class="card" href="https://www.locofy.ai" target="_blank" data-k="locofy figma to code react nextjs html">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span><span class="bdg-figma">Figma ✓</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Locofy')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Locofy</span></div>
+      <div class="card-en">Convert Figma designs to production code — React, Next.js, HTML/CSS</div>
+      <div class="card-ar">حوّل تصاميم Figma لكود production — React وNext.js وHTML</div>
+      <div class="card-url">↗ locofy.ai</div>
+    </a>
+    <a class="card" href="https://www.animaapp.com" target="_blank" data-k="anima figma to code react html vue">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span><span class="bdg-figma">Figma ✓</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Anima')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Anima</span></div>
+      <div class="card-en">Figma to code — React, HTML, Vue with responsive layout support</div>
+      <div class="card-ar">Figma لكود — React وHTML وVue مع responsive layout</div>
+      <div class="card-url">↗ animaapp.com</div>
+    </a>
+  </div>
+</div>
+
+
+<div class="sec on" data-cat="wireframe">
+  <div class="sec-hdr"><div class="sec-title"><h2>Wireframe & Prototyping</h2></div></div>
+  <div class="grid">
+    <a class="card" href="https://www.figma.com" target="_blank" data-k="figma design prototype wireframe collaborate handoff">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span><span class="bdg-figma">Figma ✓</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Figma')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Figma<span class="hot"></span></span></div>
+      <div class="card-en">Industry standard — wireframe, design, prototype & developer handoff all in one</div>
+      <div class="card-ar">المعيار في الصناعة — وايرفريم وتصميم وبروتوتايب وhandoff كله مكان</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://whimsical.com" target="_blank" data-k="whimsical wireframe flowchart mindmap fast">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Whimsical')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Whimsical<span class="hot"></span></span></div>
+      <div class="card-en">Wireframes + flowcharts + mind maps — fast, clean & intuitive</div>
+      <div class="card-ar">وايرفريم + فلوتشارت + مايندماب — سريع ونظيف</div>
+      <div class="card-url">↗ whimsical.com</div>
+    </a>
+    <a class="card" href="https://excalidraw.com" target="_blank" data-k="excalidraw hand drawn sketch open source browser">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Excalidraw')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Excalidraw</span></div>
+      <div class="card-en">Hand-drawn sketching tool — open source, runs in browser, zero friction</div>
+      <div class="card-ar">رسم يدوي في المتصفح — مفتوح المصدر بدون إعداد</div>
+      <div class="card-url">↗ excalidraw.com</div>
+    </a>
+    <a class="card" href="https://miro.com" target="_blank" data-k="miro collaborative whiteboard workshop user flow">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Miro')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Miro</span></div>
+      <div class="card-en">Infinite collaborative whiteboard — best for team workshops & user flows</div>
+      <div class="card-ar">لوح تعاوني لا نهائي — مناسب للتيمات والـ workshops</div>
+      <div class="card-url">↗ miro.com</div>
+    </a>
+    <a class="card" href="https://framer.com" target="_blank" data-k="framer prototype publish website interactions">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Framer')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Framer<span class="hot"></span></span></div>
+      <div class="card-en">Design-to-published website — powerful built-in interactions & animations</div>
+      <div class="card-ar">من التصميم لموقع منشور — تفاعلات وanimations احترافية</div>
+      <div class="card-url">↗ framer.com</div>
+    </a>
+    <a class="card" href="https://balsamiq.com" target="_blank" data-k="balsamiq lofi wireframe classic low fidelity">
+      <div class="card-top"><div class="card-badges"><span class="bdg pd">Paid</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Balsamiq')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Balsamiq</span></div>
+      <div class="card-en">Lo-fi wireframing classic — hand-drawn style prevents premature feedback</div>
+      <div class="card-ar">الكلاسيكي للـ low-fidelity — يمنع انتقاد التصميم مبكرًا</div>
+      <div class="card-url">↗ balsamiq.com</div>
+    </a>
+    <a class="card" href="https://overflow.io" target="_blank" data-k="overflow user flow diagram presentation">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Overflow')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Overflow</span></div>
+      <div class="card-en">User flow diagramming & presentation — visualize journeys beautifully</div>
+      <div class="card-ar">رسم User Flow واحترافي — بصّر رحلات المستخدم</div>
+      <div class="card-url">↗ overflow.io</div>
+    </a>
+    <a class="card" href="https://webflow.com" target="_blank" data-k="webflow no code website builder visual responsive">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Webflow')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Webflow<span class="hot"></span></span></div>
+      <div class="card-en">Visual website builder — design & publish responsive sites, no code needed</div>
+      <div class="card-ar">بنّي مواقع بالبصر — صمّم وانشر بدون كود</div>
+      <div class="card-url">↗ webflow.com</div>
+    </a>
+    <a class="card" href="https://wireframe.cc" target="_blank" data-k="wireframe cc minimalist browser simple">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Wireframe.cc')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Wireframe.cc</span></div>
+      <div class="card-en">Ultra-minimalist wireframing — draw directly in browser</div>
+      <div class="card-ar">واجهة minimalist — ارسم في المتصفح مباشرة</div>
+      <div class="card-url">↗ wireframe.cc</div>
+    </a>
+    <a class="card" href="https://moqups.com" target="_blank" data-k="moqups drag drop wireframe mockup diagram">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Moqups')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Moqups</span></div>
+      <div class="card-en">Drag-and-drop wireframes, mockups & diagrams</div>
+      <div class="card-ar">drag-and-drop — وايرفريم وموكاب ودياجرام</div>
+      <div class="card-url">↗ moqups.com</div>
+    </a>
+    <a class="card" href="https://marvelapp.com" target="_blank" data-k="marvel wireframe prototype clickable beginner">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Marvel')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Marvel</span></div>
+      <div class="card-en">Simple wireframes & clickable prototypes — great for beginners</div>
+      <div class="card-ar">وايرفريم بسيط وبروتوتايب قابل للنقر — مناسب للمبتدئين</div>
+      <div class="card-url">↗ marvelapp.com</div>
+    </a>
+    <a class="card" href="https://www.sketch.com" target="_blank" data-k="sketch mac design system tokens alternative">
+      <div class="card-top"><div class="card-badges"><span class="bdg pd">Paid</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Sketch')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Sketch</span></div>
+      <div class="card-en">Mac-only Figma alternative — strong design systems & token support</div>
+      <div class="card-ar">بديل Figma على Mac — design systems وtokens</div>
+      <div class="card-url">↗ sketch.com</div>
+    </a>
+  </div>
+</div>
+
+
+<div class="sec on" data-cat="figma">
+  <div class="sec-hdr"><div class="sec-title"><h2>Figma Plugins</h2></div></div>
+  <p style="font-size:12px;color:var(--muted);margin-bottom:16px">Press ⧉ to copy plugin name → search in Figma → Plugins → Browse</p>
+  <div class="sub-label">Icons & Assets</div>
+  <div class="grid">
+    <a class="card" href="https://www.figma.com/community/plugin/735098390272716381" target="_blank" data-k="iconify figma plugin icons all libraries">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Iconify')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Iconify<span class="hot"></span></span></div>
+      <div class="card-en">200,000+ icons from all libraries — search & insert any icon instantly</div>
+      <div class="card-ar">200,000+ أيقون من كل المكتبات — ابحث وأضف فورًا</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community/plugin/864313558400050284" target="_blank" data-k="tabler icons figma plugin">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Tabler Icons')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Tabler Icons</span></div>
+      <div class="card-en">5800+ Tabler stroke icons directly on your canvas</div>
+      <div class="card-ar">5800+ أيقون Tabler مباشرة على الـ canvas</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community/plugin/789895980949571512" target="_blank" data-k="material icons google figma">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Material Design Icons')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Material Icons</span></div>
+      <div class="card-en">Google Material Design icons — all styles in Figma</div>
+      <div class="card-ar">أيقونات Google Material الرسمية في Figma</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community/plugin/1009382044405559845" target="_blank" data-k="lordicon animated icons lottie figma">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Lordicon')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Lordicon</span></div>
+      <div class="card-en">Animated icons — Lottie & GIF, customizable in Figma</div>
+      <div class="card-ar">أيقونات متحركة Lottie وGIF قابلة للتخصيص في Figma</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+  </div>
+  <div class="sub-label">Content & Data Filling</div>
+  <div class="grid">
+    <a class="card" href="https://www.figma.com/community/plugin/740472942408935484" target="_blank" data-k="content reel figma data realistic avatars">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Content Reel')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Content Reel<span class="hot"></span></span></div>
+      <div class="card-en">Fill mockups with realistic names, emails, avatars & custom data</div>
+      <div class="card-ar">بيانات واقعية — أسماء وإيميلات وأفاتارات</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community/plugin/789839703871161985" target="_blank" data-k="unsplash figma plugin photos">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Unsplash')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Unsplash</span></div>
+      <div class="card-en">Pull real Unsplash photos into any Figma frame or shape</div>
+      <div class="card-ar">صور Unsplash الواقعية مباشرة في أي فريم أو شكل</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community/plugin/1044604558835519495" target="_blank" data-k="lorem ipsum figma placeholder text">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Lorem ipsum')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Lorem Ipsum</span></div>
+      <div class="card-en">One-click placeholder text — auto-fits text layers perfectly</div>
+      <div class="card-ar">نص placeholder بضغطة — يملأ الطبقات بالحجم الصح</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community/plugin/731627216655469013" target="_blank" data-k="table creator figma rows columns">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Table Creator')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Table Creator</span></div>
+      <div class="card-en">Generate clean data tables — rows, columns & custom styles</div>
+      <div class="card-ar">جداول بيانات نظيفة بالأبعاد والأعمدة اللي تحتاجها</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community/plugin/735943205322425188" target="_blank" data-k="data lab google sheets figma sync">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Data Lab')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Data Lab</span></div>
+      <div class="card-en">Connect Google Sheets to Figma — sync live data into designs</div>
+      <div class="card-ar">ربط Google Sheets بـ Figma — بيانات حقيقية في تصاميمك</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+  </div>
+  <div class="sub-label">Colors & Palettes</div>
+  <div class="grid">
+    <a class="card" href="https://www.figma.com/community/plugin/838959511417581040" target="_blank" data-k="color palettes generate extract image figma">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Color Palettes')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Color Palettes<span class="hot"></span></span></div>
+      <div class="card-en">Generate & extract color palettes from any image in Figma</div>
+      <div class="card-ar">أنشئ واستخرج بالتات ألوان من الصور في Figma</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community/plugin/1127505503389782746" target="_blank" data-k="coolors palette generator figma plugin">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Coolors')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Coolors</span></div>
+      <div class="card-en">Coolors palette generator — directly inside Figma</div>
+      <div class="card-ar">مولد بالتات Coolors مباشرة داخل Figma</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community/plugin/1010959344430308939" target="_blank" data-k="paletter palette generator harmony figma">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Paletter 4')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Paletter 4</span></div>
+      <div class="card-en">Advanced palette generator with harmony rules — monochromatic, analogous, complementary</div>
+      <div class="card-ar">مولد بالتات متقدم مع قواعد التناسق اللوني</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community/plugin/748533339900865323" target="_blank" data-k="contrast wcag aa aaa figma check">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Contrast')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Contrast</span></div>
+      <div class="card-en">Quick WCAG contrast ratio check — AA & AAA compliance</div>
+      <div class="card-ar">فحص سريع لـ WCAG contrast — AA وAAA compliance</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+  </div>
+  <div class="sub-label">Mockup & Presentation</div>
+  <div class="grid">
+    <a class="card" href="https://www.figma.com/community/plugin/817043359134136295" target="_blank" data-k="mockup plugin device phone tablet desktop">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Mockup')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Mockup Plugin<span class="hot"></span></span></div>
+      <div class="card-en">Place designs in real device mockups — phones, tablets, desktops, scenes</div>
+      <div class="card-ar">ضع تصاميمك في موكاب أجهزة حقيقية — تليفون وتابلت</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community/plugin/786250771563900561" target="_blank" data-k="mockuuups studio scenes realistic environment">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Mockuuups Studio')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Mockuuups Studio</span></div>
+      <div class="card-en">Drop designs into realistic photo scenes — desks, phones, environments</div>
+      <div class="card-ar">تصاميمك في مشاهد صور واقعية — مكاتب وأجهزة</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community/plugin/759460682072557852" target="_blank" data-k="angle mockups perspective device transform">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Angle Mockups')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Angle Mockups</span></div>
+      <div class="card-en">Perspective device mockups — auto-perspective transform</div>
+      <div class="card-ar">موكاب أجهزة perspective — تحويل زاوية تلقائي</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+  </div>
+  <div class="sub-label">Accessibility & Quality</div>
+  <div class="grid">
+    <a class="card" href="https://www.figma.com/community/plugin/732603254453395948" target="_blank" data-k="stark accessibility contrast wcag color blind">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Stark – Contrast & Accessibility Checker')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Stark</span></div>
+      <div class="card-en">Contrast checker, color blindness simulator & WCAG audit</div>
+      <div class="card-ar">فاحص contrast ومحاكي color blindness وتدقيق WCAG</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community/plugin/801195587640428208" target="_blank" data-k="design lint inconsistencies colors fonts spacing">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Design Lint')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Design Lint</span></div>
+      <div class="card-en">Detects inconsistencies — colors, fonts, spacing & missing styles</div>
+      <div class="card-ar">يكتشف التناقضات — ألوان وخطوط وspacing</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community/plugin/754026612866636376" target="_blank" data-k="spelll spell check grammar figma text">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Spelll')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Spelll</span></div>
+      <div class="card-en">Spell check & grammar for all text before delivery</div>
+      <div class="card-ar">تدقيق إملائي ونحوي لكل النصوص قبل التسليم</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+  </div>
+  <div class="sub-label">User Flow & Annotations</div>
+  <div class="grid">
+    <a class="card" href="https://www.figma.com/community/plugin/733902567457592893" target="_blank" data-k="autoflow user flow arrows connections">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Autoflow')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Autoflow<span class="hot"></span></span></div>
+      <div class="card-en">Draw user flow arrows between frames automatically</div>
+      <div class="card-ar">ارسم خطوط User Flow تلقائيًا بين الـ frames</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community/plugin/784441588428071168" target="_blank" data-k="overflow figma plugin user flow export">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Overflow')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Overflow Plugin</span></div>
+      <div class="card-en">Export frames to Overflow for interactive user flow presentations</div>
+      <div class="card-ar">صدّر فريمات Figma لـ Overflow — عروض User Flow</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community/plugin/784736099548774656" target="_blank" data-k="redlines annotations specs developers measurements">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Redlines')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Redlines</span></div>
+      <div class="card-en">Add specs and measurement annotations for developers</div>
+      <div class="card-ar">أضف annotations ومقايسات للـ developers</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+  </div>
+  <div class="sub-label">Layer Management & Workflow</div>
+  <div class="grid">
+    <a class="card" href="https://www.figma.com/community/plugin/731778974383691073" target="_blank" data-k="rename it layers frames batch naming regex">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Rename It')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Rename It<span class="hot"></span></span></div>
+      <div class="card-en">Batch rename layers & frames — regex support for large projects</div>
+      <div class="card-ar">تسمية layers وframes بالجملة — regex support</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community/plugin/843461159747178978" target="_blank" data-k="batch styler colors text styles bulk edit">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Batch Styler')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Batch Styler</span></div>
+      <div class="card-en">Change multiple color & text styles at once — bulk edit in seconds</div>
+      <div class="card-ar">غيّر ألوان ونصوص متعددة في نفس الوقت</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community/plugin/742197431737872978" target="_blank" data-k="similayer select similar layers properties">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Similayer')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Similayer</span></div>
+      <div class="card-en">Select all layers with similar properties — fill, font, size</div>
+      <div class="card-ar">اختار كل الـ layers بنفس الخصائص</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community/plugin/780123742813745458" target="_blank" data-k="clean document organize tidy figma">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Clean Document')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Clean Document</span></div>
+      <div class="card-en">Auto-organize and tidy messy Figma files with one click</div>
+      <div class="card-ar">نظّم الملف الفوضوي تلقائيًا بضغطة واحدة</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community/plugin/938876059906073537" target="_blank" data-k="better font picker preview typography figma">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Better Font Picker')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Better Font Picker</span></div>
+      <div class="card-en">Preview fonts in real context before applying</div>
+      <div class="card-ar">شوف الخطوط في سياق حقيقي قبل تطبيقها</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community/plugin/735435989472782533" target="_blank" data-k="font scale typography modular figma">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Font Scale')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Font Scale</span></div>
+      <div class="card-en">Create modular typography scale & apply across your file</div>
+      <div class="card-ar">أنشئ نظام typography modular وطبّقه على الملف</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+  </div>
+  <div class="sub-label">Design Tokens & Dev Handoff</div>
+  <div class="grid">
+    <a class="card" href="https://www.figma.com/community/plugin/843461300863777135" target="_blank" data-k="figma tokens design tokens colors spacing code">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Figma Tokens')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Figma Tokens<span class="hot"></span></span></div>
+      <div class="card-en">Manage design tokens — colors, spacing, typography synced with code</div>
+      <div class="card-ar">إدارة Design Tokens مزامنة مع الكود</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community/plugin/747172434405738589" target="_blank" data-k="svg export optimized clean figma vector">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'SVG Export')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">SVG Export</span></div>
+      <div class="card-en">Export clean optimized SVG code from any shape or icon</div>
+      <div class="card-ar">تصدير SVG نظيف ومحسّن من أي شكل أو أيقون</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://zeplin.io" target="_blank" data-k="zeplin handoff developers specs assets">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Zeplin')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Zeplin</span></div>
+      <div class="card-en">Professional design handoff — specs, assets & style guides for devs</div>
+      <div class="card-ar">handoff احترافي للـ developers — specs وأصول وstyle guides</div>
+      <div class="card-url">↗ zeplin.io</div>
+    </a>
+  </div>
+  <div class="sub-label">Animation & Motion</div>
+  <div class="grid">
+    <a class="card" href="https://www.figma.com/community/plugin/733902451987704760" target="_blank" data-k="lottiefiles animation lottie figma 500000">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'LottieFiles')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">LottieFiles<span class="hot"></span></span></div>
+      <div class="card-en">Browse & insert 500,000+ Lottie animations in Figma</div>
+      <div class="card-ar">تصفح وأضف 500,000+ Lottie animation في Figma</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community/plugin/988173868842375596" target="_blank" data-k="aninix animation ui motion export lottie mp4 gif">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Aninix')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Aninix<span class="hot"></span></span></div>
+      <div class="card-en">UI animation & motion — export Lottie, MP4 or GIF from Figma</div>
+      <div class="card-ar">animation وmotion داخل Figma — صدّر Lottie أو MP4 أو GIF</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community/plugin/1090204469331422607" target="_blank" data-k="lottielab figma animate lottie export gradients">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Lottielab')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Lottielab</span></div>
+      <div class="card-en">Animate Figma designs → export Lottie, pixel-perfect with gradients</div>
+      <div class="card-ar">حرّك تصاميم Figma وصدّرها Lottie — pixel-perfect مع gradients</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community/plugin/786421018985321567" target="_blank" data-k="figmotion keyframe animation timeline figma">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Figmotion')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Figmotion</span></div>
+      <div class="card-en">Keyframe animation timeline directly inside Figma</div>
+      <div class="card-ar">تايملاين كيفريم animation مباشرة داخل Figma</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+  </div>
+  <div class="sub-label">AI Plugins</div>
+  <div class="grid">
+    <a class="card" href="https://www.figma.com/ai" target="_blank" data-k="figma ai native generate rename auto layout">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Figma AI')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Figma AI<span class="hot"></span></span></div>
+      <div class="card-en">Built-in Figma AI — generate UIs, rename layers, auto-layout suggestions</div>
+      <div class="card-ar">الذكاء المدمج في Figma — توليد UI وتسمية layers</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.magician.design" target="_blank" data-k="magician figma ai generate icons text images">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Magician')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Magician</span></div>
+      <div class="card-en">AI icon, text & image generation inside Figma</div>
+      <div class="card-ar">توليد أيقونات ونصوص وصور بالـ AI داخل Figma</div>
+      <div class="card-url">↗ magician.design</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community/plugin/732560409303727804" target="_blank" data-k="remove bg background remover ai figma">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Remove BG')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Remove BG</span></div>
+      <div class="card-en">Remove image backgrounds with AI — one click in Figma</div>
+      <div class="card-ar">أزل خلفية الصور بالـ AI بضغطة داخل Figma</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community/plugin/895249849900252989" target="_blank" data-k="wireframe kit figma lofi library drag drop">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Wireframe')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Wireframe Kit</span></div>
+      <div class="card-en">Huge lo-fi wireframe library — drag & drop to build flows fast</div>
+      <div class="card-ar">مكتبة lo-fi ضخمة — drag & drop لبناء flows سريعًا</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community/plugin/742792142487609741" target="_blank" data-k="charts figma plugin data bar pie line">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Charts')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Charts</span></div>
+      <div class="card-en">Create bar, line & pie charts from real or random data</div>
+      <div class="card-ar">أنشئ bar وline وpie charts من بيانات حقيقية أو عشوائية</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community/plugin/739472498985174737" target="_blank" data-k="blobs organic shapes figma backgrounds">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Blobs')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Blobs</span></div>
+      <div class="card-en">Generate organic blob shapes for backgrounds & decorations</div>
+      <div class="card-ar">أنشئ أشكال blob عضوية للخلفيات والزخارف</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+  </div>
+</div>
+
+
+<div class="sec on" data-cat="illustrations">
+  <div class="sec-hdr"><div class="sec-title"><h2>Illustrations, Photos & Visual Inspiration</h2></div></div>
+  <div class="sub-label">Free Illustrations — SVG & Customizable</div>
+  <div class="grid">
+    <a class="card" href="https://undraw.co" target="_blank" data-k="undraw svg illustrations free color customize">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span><span class="bdg-figma">Figma ✓</span><span class="bdg-svg">SVG</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'unDraw')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">unDraw<span class="hot"></span></span></div>
+      <div class="card-en">Free SVG illustrations — change primary color to match your brand, Figma plugin</div>
+      <div class="card-ar">رسومات SVG مجانية — غيّر اللون الأساسي ليناسب برانطك</div>
+      <div class="card-url">↗ undraw.co</div>
+    </a>
+    <a class="card" href="https://storyset.com" target="_blank" data-k="storyset illustrations animated editable customize">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span><span class="bdg-svg">SVG</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Storyset')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Storyset<span class="hot"></span></span></div>
+      <div class="card-en">Fully editable animated & static illustrations — deep customization</div>
+      <div class="card-ar">illustrations قابلة للتعديل الكامل — متحركة وثابتة</div>
+      <div class="card-url">↗ storyset.com</div>
+    </a>
+    <a class="card" href="https://www.manypixels.co/gallery" target="_blank" data-k="manypixels illustrations styles svg png">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span><span class="bdg-svg">SVG</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'ManyPixels')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">ManyPixels</span></div>
+      <div class="card-en">High-quality illustrations in multiple styles — SVG & PNG download</div>
+      <div class="card-ar">رسومات بأساليب مختلفة عالية الجودة — SVG وPNG</div>
+      <div class="card-url">↗ manypixels.co</div>
+    </a>
+    <a class="card" href="https://www.humaaans.com" target="_blank" data-k="humaaans characters people svg customizable mix">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span><span class="bdg-svg">SVG</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Humaaans')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Humaaans</span></div>
+      <div class="card-en">Mix-and-match human SVG illustrations — fully customizable people</div>
+      <div class="card-ar">شخصيات SVG قابلة للتخصيص الكامل — امزج الأجساد والملابس</div>
+      <div class="card-url">↗ humaaans.com</div>
+    </a>
+    <a class="card" href="https://www.drawkit.com" target="_blank" data-k="drawkit illustrations animations professional figma">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span><span class="bdg-figma">Figma ✓</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'DrawKit')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">DrawKit</span></div>
+      <div class="card-en">Professional illustrations & animations in consistent style — Figma files</div>
+      <div class="card-ar">illustrations وanimations احترافية بأسلوب موحد</div>
+      <div class="card-url">↗ drawkit.com</div>
+    </a>
+    <a class="card" href="https://blush.design" target="_blank" data-k="blush illustrations customize figma plugin mix">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span><span class="bdg-figma">Figma ✓</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Blush')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Blush</span></div>
+      <div class="card-en">Customizable illustrations with Figma plugin — mix styles freely</div>
+      <div class="card-ar">illustrations قابلة للتخصيص مع بلاجن Figma</div>
+      <div class="card-url">↗ blush.design</div>
+    </a>
+    <a class="card" href="https://www.opendoodles.com" target="_blank" data-k="open doodles hand drawn free svg illustrations">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span><span class="bdg-svg">SVG</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Open Doodles')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Open Doodles</span></div>
+      <div class="card-en">Free hand-drawn doodle illustrations — SVG, customizable colors</div>
+      <div class="card-ar">رسومات يدوية مجانية — SVG قابلة للتخصيص</div>
+      <div class="card-url">↗ opendoodles.com</div>
+    </a>
+    <a class="card" href="https://illlustrations.co" target="_blank" data-k="illustrations co free open source warm modern">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span><span class="bdg-svg">SVG</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Illustrations.co')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Illustrations.co</span></div>
+      <div class="card-en">100+ free open-source illustrations — warm, diverse & modern</div>
+      <div class="card-ar">100+ illustration مفتوح المصدر — دافئة وحديثة</div>
+      <div class="card-url">↗ illlustrations.co</div>
+    </a>
+  </div>
+  <div class="sub-label">Stock Photos & Videos</div>
+  <div class="grid">
+    <a class="card" href="https://unsplash.com" target="_blank" data-k="unsplash photos free commercial high quality">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span><span class="bdg-figma">Figma ✓</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Unsplash')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Unsplash<span class="hot"></span></span></div>
+      <div class="card-en">Millions of high-quality free photos — commercial use, Figma plugin</div>
+      <div class="card-ar">ملايين الصور المجانية للاستخدام التجاري</div>
+      <div class="card-url">↗ unsplash.com</div>
+    </a>
+    <a class="card" href="https://pexels.com" target="_blank" data-k="pexels photos videos free commercial">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Pexels')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Pexels</span></div>
+      <div class="card-en">Free photos & videos for commercial use — massive library</div>
+      <div class="card-ar">صور وفيديو مجاني للاستخدام التجاري — مكتبة ضخمة</div>
+      <div class="card-url">↗ pexels.com</div>
+    </a>
+    <a class="card" href="https://www.freepik.com" target="_blank" data-k="freepik vectors photos mockups templates figma">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span><span class="bdg-figma">Figma ✓</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Freepik')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Freepik<span class="hot"></span></span></div>
+      <div class="card-en">Vectors, photos, mockups & templates — huge library, Figma integration</div>
+      <div class="card-ar">متجهات وصور وموكاب وتيمبليتات — مكتبة ضخمة</div>
+      <div class="card-url">↗ freepik.com</div>
+    </a>
+    <a class="card" href="https://pixabay.com" target="_blank" data-k="pixabay free photos vectors videos">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Pixabay')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Pixabay</span></div>
+      <div class="card-en">2M+ free photos, vectors & videos — no attribution needed</div>
+      <div class="card-ar">2 مليون+ صورة ومتجهات وفيديو مجانية — بدون نسب</div>
+      <div class="card-url">↗ pixabay.com</div>
+    </a>
+    <a class="card" href="https://stocksnap.io" target="_blank" data-k="stocksnap free stock photos beautiful">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'StockSnap')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">StockSnap</span></div>
+      <div class="card-en">Beautiful free stock photos — no attribution required</div>
+      <div class="card-ar">صور stock جميلة مجانية — بدون نسب مصدر</div>
+      <div class="card-url">↗ stocksnap.io</div>
+    </a>
+  </div>
+  <div class="sub-label">Visual Inspiration — UI/UX & Web Design</div>
+  <div class="grid">
+    <a class="card" href="https://dribbble.com" target="_blank" data-k="dribbble design inspiration showcase ui ux">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Dribbble')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Dribbble<span class="hot"></span></span></div>
+      <div class="card-en">Endless UI/UX design inspiration — top designers worldwide</div>
+      <div class="card-ar">إلهام UI/UX لا نهاية له — أفضل المصممين في العالم</div>
+      <div class="card-url">↗ dribbble.com</div>
+    </a>
+    <a class="card" href="https://www.behance.net" target="_blank" data-k="behance case studies design process portfolio">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Behance')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Behance</span></div>
+      <div class="card-en">Full case studies & design processes — Adobe showcase platform</div>
+      <div class="card-ar">case studies كاملة وعمليات تصميم — منصة Adobe</div>
+      <div class="card-url">↗ behance.net</div>
+    </a>
+    <a class="card" href="https://pinterest.com" target="_blank" data-k="pinterest visual discovery inspiration boards">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Pinterest')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Pinterest<span class="hot"></span></span></div>
+      <div class="card-en">Visual discovery — save & organize design inspiration boards</div>
+      <div class="card-ar">اكتشاف بصري — احفظ ونظّم ألواح الإلهام</div>
+      <div class="card-url">↗ pinterest.com</div>
+    </a>
+    <a class="card" href="https://www.mobbin.com" target="_blank" data-k="mobbin app screens ui inspiration real screenshots">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Mobbin')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Mobbin<span class="hot"></span></span></div>
+      <div class="card-en">400,000+ real app screenshots — UI inspiration from top apps</div>
+      <div class="card-ar">400,000+ شاشة تطبيقات حقيقية — إلهام UI من أفضل التطبيقات</div>
+      <div class="card-url">↗ mobbin.com</div>
+    </a>
+    <a class="card" href="https://www.awwwards.com" target="_blank" data-k="awwwards award winning web design interactive best">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Awwwards')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Awwwards<span class="hot"></span></span></div>
+      <div class="card-en">Award-winning web designs — daily site of the day, cutting-edge interactions</div>
+      <div class="card-ar">تصاميم ويب حائزة على جوائز — أفضل تصميم يوميًا</div>
+      <div class="card-url">↗ awwwards.com</div>
+    </a>
+    <a class="card" href="https://www.siteinspire.com" target="_blank" data-k="siteinspire web design gallery curated minimal style">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'SiteInspire')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">SiteInspire</span></div>
+      <div class="card-en">Manually curated exceptional websites — filter by style, type & subject</div>
+      <div class="card-ar">معرض مختار يدويًا لأفضل المواقع — فلتر بالأسلوب والنوع</div>
+      <div class="card-url">↗ siteinspire.com</div>
+    </a>
+    <a class="card" href="https://godly.website" target="_blank" data-k="godly website design inspiration beautiful curated">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Godly')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Godly</span></div>
+      <div class="card-en">Hand-curated collection of the most beautiful websites</div>
+      <div class="card-ar">مجموعة مختارة يدويًا لأجمل المواقع على الإنترنت</div>
+      <div class="card-url">↗ godly.website</div>
+    </a>
+    <a class="card" href="https://collectui.com" target="_blank" data-k="collect ui daily inspiration components cards">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Collect UI')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Collect UI<span class="hot"></span></span></div>
+      <div class="card-en">Daily UI inspiration — browse by component: buttons, cards, modals</div>
+      <div class="card-ar">إلهام UI يومي — تصفح حسب الكومبوننت</div>
+      <div class="card-url">↗ collectui.com</div>
+    </a>
+    <a class="card" href="https://pageflows.com" target="_blank" data-k="page flows user flow onboarding checkout recordings">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Page Flows')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Page Flows<span class="hot"></span></span></div>
+      <div class="card-en">Real user flow recordings — onboarding, checkout, login from top apps</div>
+      <div class="card-ar">تسجيلات User Flows حقيقية — onboarding وcheckout وlogin</div>
+      <div class="card-url">↗ pageflows.com</div>
+    </a>
+    <a class="card" href="https://uxarchive.com" target="_blank" data-k="ux archive ios flows mobile patterns animated">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'UX Archive')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">UX Archive</span></div>
+      <div class="card-en">Animated iOS user flows — study interaction patterns from real apps</div>
+      <div class="card-ar">User Flows متحركة من iOS — ادرس أنماط التفاعل</div>
+      <div class="card-url">↗ uxarchive.com</div>
+    </a>
+    <a class="card" href="https://saasframe.io" target="_blank" data-k="saasframe saas ui dashboard pricing modals">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'SaaSFrame')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">SaaSFrame</span></div>
+      <div class="card-en">SaaS UI patterns — dashboards, pricing, modals from real products</div>
+      <div class="card-ar">أنماط UI من منتجات SaaS — dashboards وجداول أسعار</div>
+      <div class="card-url">↗ saasframe.io</div>
+    </a>
+    <a class="card" href="https://land-book.com" target="_blank" data-k="land book landing page design gallery inspiration">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Land-book')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Land-book</span></div>
+      <div class="card-en">Curated gallery of stunning landing page designs</div>
+      <div class="card-ar">معرض محكم لأجمل Landing Pages</div>
+      <div class="card-url">↗ land-book.com</div>
+    </a>
+  </div>
+  <div class="sub-label">Animations & Lottie Resources</div>
+  <div class="grid">
+    <a class="card" href="https://lottiefiles.com" target="_blank" data-k="lottiefiles lottie animations free library web mobile">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'LottieFiles')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">LottieFiles<span class="hot"></span></span></div>
+      <div class="card-en">500,000+ Lottie animations — discover, test & implement in web & mobile</div>
+      <div class="card-ar">500,000+ Lottie animation — اكتشف واختبر ونفّذ</div>
+      <div class="card-url">↗ lottiefiles.com</div>
+    </a>
+    <a class="card" href="https://rive.app" target="_blank" data-k="rive interactive animations web mobile next gen">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Rive')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Rive<span class="hot"></span></span></div>
+      <div class="card-en">Create interactive animations for web & mobile — next-gen Lottie alternative</div>
+      <div class="card-ar">أنشئ animations تفاعلية للويب والموبايل — بديل Lottie الجديل</div>
+      <div class="card-url">↗ rive.app</div>
+    </a>
+    <a class="card" href="https://svgator.com" target="_blank" data-k="svgator svg animation online no code css">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'SVGator')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">SVGator</span></div>
+      <div class="card-en">Animate SVG files online — export CSS or JS animation, no code</div>
+      <div class="card-ar">حرّك ملفات SVG بدون كود — صدّر CSS أو JS</div>
+      <div class="card-url">↗ svgator.com</div>
+    </a>
+    <a class="card" href="https://jitter.video" target="_blank" data-k="jitter video animation motion ui gif export">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Jitter')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Jitter</span></div>
+      <div class="card-en">Design UI animations & motion graphics — export video, GIF or Lottie</div>
+      <div class="card-ar">صمم UI animations ورسومات متحركة — صدّر video أو GIF</div>
+      <div class="card-url">↗ jitter.video</div>
+    </a>
+    <a class="card" href="https://spline.design" target="_blank" data-k="spline 3d design web interactive no code">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Spline')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Spline<span class="hot"></span></span></div>
+      <div class="card-en">3D design for the web — interactive 3D scenes, no coding required</div>
+      <div class="card-ar">تصميم ثري‌دي للويب — مشاهد 3D تفاعلية بدون كود</div>
+      <div class="card-url">↗ spline.design</div>
+    </a>
+  </div>
+</div>
+
+
+<div class="sec on" data-cat="colors">
+  <div class="sec-hdr"><div class="sec-title"><h2>Colors, Fonts & Typography</h2></div></div>
+  <div class="grid">
+    <a class="card" href="https://coolors.co" target="_blank" data-k="coolors palette generator color schemes space">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Coolors')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Coolors<span class="hot"></span></span></div>
+      <div class="card-en">Smart palette generator — press Space for new palette, lock favorites</div>
+      <div class="card-ar">مولد باليتات ذكي — Space لبالتة جديدة</div>
+      <div class="card-url">↗ coolors.co</div>
+    </a>
+    <a class="card" href="https://colorhunt.co" target="_blank" data-k="color hunt palettes curated season mood trending">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Color Hunt')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Color Hunt<span class="hot"></span></span></div>
+      <div class="card-en">Thousands of curated palettes — filter by season, mood & trending</div>
+      <div class="card-ar">آلاف البالتات — فلتر حسب الموسم والمزاج والتريند</div>
+      <div class="card-url">↗ colorhunt.co</div>
+    </a>
+    <a class="card" href="https://www.happyhues.co" target="_blank" data-k="happy hues palette real design context preview">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Happy Hues')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Happy Hues</span></div>
+      <div class="card-en">See palettes applied to a real design — not just swatches</div>
+      <div class="card-ar">شوف البالتة على تصميم حقيقي — مش مجرد مربعات</div>
+      <div class="card-url">↗ happyhues.co</div>
+    </a>
+    <a class="card" href="https://uicolors.app" target="_blank" data-k="ui colors tailwind palette shades hex convert">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'UI Colors')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">UI Colors</span></div>
+      <div class="card-en">Convert any HEX to full Tailwind color scale (50–950) instantly</div>
+      <div class="card-ar">حوّل أي HEX لـ Tailwind palette كاملة 50-950</div>
+      <div class="card-url">↗ uicolors.app</div>
+    </a>
+    <a class="card" href="https://palettemaker.com" target="_blank" data-k="palettemaker generate palette preview ui mockup">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Palettemaker')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Palettemaker</span></div>
+      <div class="card-en">Generate palettes & preview on real UI mockups instantly</div>
+      <div class="card-ar">ولّد بالتات وشوفها على موكاب UI فورًا</div>
+      <div class="card-url">↗ palettemaker.com</div>
+    </a>
+    <a class="card" href="https://colorable.jxnblk.com" target="_blank" data-k="colorable contrast text background wcag live">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Colorable')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Colorable</span></div>
+      <div class="card-en">Check color contrast between text & background — WCAG live</div>
+      <div class="card-ar">فحص contrast بين النص والخلفية — WCAG live</div>
+      <div class="card-url">↗ colorable.jxnblk.com</div>
+    </a>
+    <a class="card" href="https://color.adobe.com" target="_blank" data-k="adobe color wheel palette harmony extract image">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Adobe Color')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Adobe Color</span></div>
+      <div class="card-en">Color wheel & palette generator — harmony rules, extract from image</div>
+      <div class="card-ar">عجلة الألوان ومولد بالتات — قواعد التناسق</div>
+      <div class="card-url">↗ color.adobe.com</div>
+    </a>
+    <a class="card" href="https://gradients.app" target="_blank" data-k="gradients app css beautiful curated copy">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Gradient App')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Gradient App</span></div>
+      <div class="card-en">Beautiful curated CSS gradients — copy code instantly</div>
+      <div class="card-ar">جراديانتس CSS جميلة جاهزة — انسخ الكود فورًا</div>
+      <div class="card-url">↗ gradients.app</div>
+    </a>
+    <a class="card" href="https://cssgradient.io" target="_blank" data-k="css gradient generator visual tool code">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'CSS Gradient')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">CSS Gradient</span></div>
+      <div class="card-en">Visual CSS gradient generator — production-ready code</div>
+      <div class="card-ar">مولد CSS gradients بصري — كود جاهز للـ production</div>
+      <div class="card-url">↗ cssgradient.io</div>
+    </a>
+    <a class="card" href="https://fonts.google.com" target="_blank" data-k="google fonts free web typography 1500">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Google Fonts')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Google Fonts<span class="hot"></span></span></div>
+      <div class="card-en">1500+ free web fonts — the foundation of every web project</div>
+      <div class="card-ar">1500+ خط ويب مجاني — الأساس في أي مشروع</div>
+      <div class="card-url">↗ fonts.google.com</div>
+    </a>
+    <a class="card" href="https://fontpair.co" target="_blank" data-k="font pair pairing heading body harmony combination">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Font Pair')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Font Pair</span></div>
+      <div class="card-en">Find perfect font combinations for heading & body text</div>
+      <div class="card-ar">اختار خطين متناسقين — heading وbody</div>
+      <div class="card-url">↗ fontpair.co</div>
+    </a>
+    <a class="card" href="https://typescale.com" target="_blank" data-k="typescale type scale h1 h2 body ratio system">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Typescale')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Typescale</span></div>
+      <div class="card-en">Build a typography system — calculate correct scale ratios</div>
+      <div class="card-ar">ابنِ نظام typography — احسب النسب الصح</div>
+      <div class="card-url">↗ typescale.com</div>
+    </a>
+    <a class="card" href="https://www.fontsquirrel.com" target="_blank" data-k="font squirrel free commercial fonts download quality">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Font Squirrel')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Font Squirrel</span></div>
+      <div class="card-en">Free fonts for commercial use — handpicked quality selection</div>
+      <div class="card-ar">خطوط مجانية للاستخدام التجاري — مختارة بعناية</div>
+      <div class="card-url">↗ fontsquirrel.com</div>
+    </a>
+    <a class="card" href="https://fontjoy.com" target="_blank" data-k="fontjoy ai font pairing generator harmonious">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Fontjoy')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Fontjoy</span></div>
+      <div class="card-en">AI font pairing generator — find harmonious font combos</div>
+      <div class="card-ar">مولد تنسيق خطوط بالـ AI — أوجد توافقات رائعة</div>
+      <div class="card-url">↗ fontjoy.com</div>
+    </a>
+    <a class="card" href="https://www.whatfontis.com" target="_blank" data-k="whatfontis identify font image upload">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'WhatFontIs')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">WhatFontIs</span></div>
+      <div class="card-en">Identify any font from an image — upload & get results instantly</div>
+      <div class="card-ar">حدّد أي خط من صورة — رفع وحصول على نتيجة فورية</div>
+      <div class="card-url">↗ whatfontis.com</div>
+    </a>
+  </div>
+</div>
+
+
+<div class="sec on" data-cat="kits">
+  <div class="sec-hdr"><div class="sec-title"><h2>UI Kits, Design Systems & Inspiration</h2></div></div>
+  <div class="sub-label">Figma UI Kits & Design Systems</div>
+  <div class="grid">
+    <a class="card" href="https://www.untitledui.com" target="_blank" data-k="untitled ui figma kit design system free variables dark">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span><span class="bdg-figma">Figma ✓</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Untitled UI')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Untitled UI<span class="hot"></span></span></div>
+      <div class="card-en">Largest free Figma UI kit — full design system, variables, dark mode, 50+ pages</div>
+      <div class="card-ar">أضخم Figma Kit مجاني — نظام تصميم كامل مع variables</div>
+      <div class="card-url">↗ untitledui.com</div>
+    </a>
+    <a class="card" href="https://www.figma.com/community" target="_blank" data-k="figma community templates kits free resources plugins">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span><span class="bdg-figma">Figma ✓</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Figma Community')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Figma Community<span class="hot"></span></span></div>
+      <div class="card-en">Thousands of free templates, kits & plugins from the global community</div>
+      <div class="card-ar">آلاف الـ templates والـ kits المجانية من مجتمع Figma</div>
+      <div class="card-url">↗ figma.com</div>
+    </a>
+    <a class="card" href="https://www.ui8.net" target="_blank" data-k="ui8 figma marketplace premium free kits icons">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'UI8')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">UI8</span></div>
+      <div class="card-en">Premium & free Figma kits, icons & templates marketplace</div>
+      <div class="card-ar">سوق Figma kits مدفوعة ومجانية — أيقونات وتيمبليتات</div>
+      <div class="card-url">↗ ui8.net</div>
+    </a>
+    <a class="card" href="https://freebiesui.com" target="_blank" data-k="freebies ui free kits figma sketch resources">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span><span class="bdg-figma">Figma ✓</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Freebies UI')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Freebies UI</span></div>
+      <div class="card-en">Free UI kits & resources for Figma & Sketch</div>
+      <div class="card-ar">كيتات وموارد UI مجانية لـ Figma وSketch</div>
+      <div class="card-url">↗ freebiesui.com</div>
+    </a>
+    <a class="card" href="https://layers.to" target="_blank" data-k="layers to design resources tools kits community">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Layers')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Layers</span></div>
+      <div class="card-en">Designer community hub — curated tools, kits, plugins & inspiration</div>
+      <div class="card-ar">مركز مجتمع المصممين — أدوات وكيتات وبلاجن وإلهام</div>
+      <div class="card-url">↗ layers.to</div>
+    </a>
+    <a class="card" href="https://uigoodies.com" target="_blank" data-k="ui goodies design resources curated tools best">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'UI Goodies')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">UI Goodies</span></div>
+      <div class="card-en">Handpicked design resources & tools — the best of the best</div>
+      <div class="card-ar">موارد وأدوات تصميم مختارة بعناية — أفضل ما في الإنترنت</div>
+      <div class="card-url">↗ uigoodies.com</div>
+    </a>
+  </div>
+  <div class="sub-label">Inspiration & Showcase</div>
+  <div class="grid">
+    <a class="card" href="https://www.mobbin.com" target="_blank" data-k="mobbin app screens ui inspiration real screenshots patterns">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Mobbin')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Mobbin<span class="hot"></span></span></div>
+      <div class="card-en">400,000+ real app screenshots — UI patterns from top apps worldwide</div>
+      <div class="card-ar">400,000+ شاشة تطبيق حقيقية — patterns من أفضل التطبيقات</div>
+      <div class="card-url">↗ mobbin.com</div>
+    </a>
+    <a class="card" href="https://dribbble.com" target="_blank" data-k="dribbble design inspiration showcase portfolio designers">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Dribbble')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Dribbble</span></div>
+      <div class="card-en">Endless UI/UX design inspiration — top designers worldwide</div>
+      <div class="card-ar">إلهام تصميمي لا نهاية — أفضل المصممين في العالم</div>
+      <div class="card-url">↗ dribbble.com</div>
+    </a>
+    <a class="card" href="https://www.behance.net" target="_blank" data-k="behance adobe portfolio case studies professional">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Behance')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Behance</span></div>
+      <div class="card-en">Full case studies & design processes — Adobe showcase</div>
+      <div class="card-ar">case studies كاملة وعمليات تصميم من Adobe</div>
+      <div class="card-url">↗ behance.net</div>
+    </a>
+    <a class="card" href="https://www.awwwards.com" target="_blank" data-k="awwwards award winning web design daily inspiration">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Awwwards')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Awwwards</span></div>
+      <div class="card-en">Award-winning web designs — daily inspiration, cutting-edge tech</div>
+      <div class="card-ar">تصاميم ويب حائزة على جوائز — إلهام يومي</div>
+      <div class="card-url">↗ awwwards.com</div>
+    </a>
+    <a class="card" href="https://www.siteinspire.com" target="_blank" data-k="siteinspire curated exceptional websites style type">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'SiteInspire')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">SiteInspire</span></div>
+      <div class="card-en">Manually curated exceptional websites — filter by style & type</div>
+      <div class="card-ar">معرض مختار يدويًا — فلتر بالأسلوب والنوع</div>
+      <div class="card-url">↗ siteinspire.com</div>
+    </a>
+    <a class="card" href="https://godly.website" target="_blank" data-k="godly beautiful websites curated collection">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Godly')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Godly</span></div>
+      <div class="card-en">Hand-curated most beautiful websites collection</div>
+      <div class="card-ar">أجمل مجموعة مواقع مختارة يدويًا</div>
+      <div class="card-url">↗ godly.website</div>
+    </a>
+    <a class="card" href="https://scrnshts.club" target="_blank" data-k="scrnshts app store screenshots beautiful inspiration">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Scrnshts')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Scrnshts</span></div>
+      <div class="card-en">Beautiful App Store screenshot designs for inspiration</div>
+      <div class="card-ar">تصاميم App Store screenshots جميلة للإلهام</div>
+      <div class="card-url">↗ scrnshts.club</div>
+    </a>
+    <a class="card" href="https://saasframe.io" target="_blank" data-k="saasframe saas ui patterns dashboard pricing real">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'SaaSFrame')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">SaaSFrame</span></div>
+      <div class="card-en">SaaS UI patterns — dashboards, pricing & modals from real products</div>
+      <div class="card-ar">أنماط UI من SaaS حقيقية — dashboards وتسعير وموودالز</div>
+      <div class="card-url">↗ saasframe.io</div>
+    </a>
+  </div>
+</div>
+
+
+<div class="sec on" data-cat="tools">
+  <div class="sec-hdr"><div class="sec-title"><h2>Tools, CSS Generators & Optimization</h2></div></div>
+  <div class="sub-label">CSS Generators & Code Tools</div>
+  <div class="grid">
+    <a class="card" href="https://haikei.app" target="_blank" data-k="haikei svg background waves blobs low poly generator">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span><span class="bdg-svg">SVG</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Haikei')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Haikei<span class="hot"></span></span></div>
+      <div class="card-en">Generate unique SVG backgrounds — waves, blobs, low-poly & stacked</div>
+      <div class="card-ar">أنشئ خلفيات SVG فريدة — موجات وblobs وlow-poly</div>
+      <div class="card-url">↗ haikei.app</div>
+    </a>
+    <a class="card" href="https://www.shapedivider.app" target="_blank" data-k="shape divider svg section wave curve css">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span><span class="bdg-svg">SVG</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Shape Divider')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Shape Divider</span></div>
+      <div class="card-en">Custom SVG section dividers — waves & curves between page sections</div>
+      <div class="card-ar">فواصل sections بـ SVG — موجات ومنحنيات بين السيكشنز</div>
+      <div class="card-url">↗ shapedivider.app</div>
+    </a>
+    <a class="card" href="https://shadows.brumm.af" target="_blank" data-k="smooth shadow css box shadow generator layered natural">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Smooth Shadow')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Smooth Shadow</span></div>
+      <div class="card-en">Generate beautiful layered CSS box shadows — smooth & natural</div>
+      <div class="card-ar">أنشئ CSS box shadows طبقية جميلة — ناعمة وطبيعية</div>
+      <div class="card-url">↗ shadows.brumm.af</div>
+    </a>
+    <a class="card" href="https://neumorphism.io" target="_blank" data-k="neumorphism soft ui css generator shadow design">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Neumorphism.io')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Neumorphism.io</span></div>
+      <div class="card-en">Soft UI & neumorphism CSS generator — customize and copy</div>
+      <div class="card-ar">مولد soft UI وneumorphism CSS — خصص وانسخ</div>
+      <div class="card-url">↗ neumorphism.io</div>
+    </a>
+    <a class="card" href="https://www.magicpattern.design" target="_blank" data-k="magic pattern css svg pattern dots lines waves geometric">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Magic Pattern')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Magic Pattern</span></div>
+      <div class="card-en">CSS & SVG pattern generator — dots, lines, waves & geometric</div>
+      <div class="card-ar">مولد patterns CSS وSVG — نقاط وخطوط وموجات هندسية</div>
+      <div class="card-url">↗ magicpattern.design</div>
+    </a>
+    <a class="card" href="https://bennettfeely.com/clippy" target="_blank" data-k="clippy css clip path shapes polygon circle ellipse">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Clippy')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Clippy</span></div>
+      <div class="card-en">CSS clip-path shape maker — polygon, circle, ellipse visual editor</div>
+      <div class="card-ar">صانع أشكال CSS clip-path بصري — polygon وcircle</div>
+      <div class="card-url">↗ bennettfeely.com</div>
+    </a>
+    <a class="card" href="https://cubic-bezier.com" target="_blank" data-k="cubic bezier easing animation timing css curve">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Cubic Bezier')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Cubic Bezier</span></div>
+      <div class="card-en">Visual CSS easing curve editor — nail animation timing perfectly</div>
+      <div class="card-ar">محرر منحنيات CSS easing — اضبط توقيت animation بدقة</div>
+      <div class="card-url">↗ cubic-bezier.com</div>
+    </a>
+    <a class="card" href="https://cssclippath.com" target="_blank" data-k="css clip path generator visual preview">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'CSS Clip Path')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">CSS Clip Path</span></div>
+      <div class="card-en">Visual clip path generator with live preview</div>
+      <div class="card-ar">مولد clip path بصري مع معاينة مباشرة</div>
+      <div class="card-url">↗ cssclippath.com</div>
+    </a>
+  </div>
+  <div class="sub-label">UX Research & Testing</div>
+  <div class="grid">
+    <a class="card" href="https://maze.co" target="_blank" data-k="maze ux research user testing usability prototype surveys">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Maze')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Maze<span class="hot"></span></span></div>
+      <div class="card-en">Rapid user testing — test prototypes, surveys & card sorting</div>
+      <div class="card-ar">اختبار مستخدم سريع — بروتوتايبات واستبيانات وcard sorting</div>
+      <div class="card-url">↗ maze.co</div>
+    </a>
+    <a class="card" href="https://www.hotjar.com" target="_blank" data-k="hotjar heatmap session recording user behavior analytics">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Hotjar')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Hotjar</span></div>
+      <div class="card-en">Heatmaps, session recordings & user feedback — understand real behavior</div>
+      <div class="card-ar">heatmaps وتسجيلات sessions وتعليقات المستخدمين</div>
+      <div class="card-url">↗ hotjar.com</div>
+    </a>
+    <a class="card" href="https://www.uxtweak.com" target="_blank" data-k="uxtweak tree test card sort session recording research">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'UXtweak')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">UXtweak</span></div>
+      <div class="card-en">Full UX research suite — tree testing, card sorting & sessions</div>
+      <div class="card-ar">مجموعة كاملة لبحث UX — tree testing وcard sorting</div>
+      <div class="card-url">↗ uxtweak.com</div>
+    </a>
+    <a class="card" href="https://www.usertesting.com" target="_blank" data-k="usertesting real users feedback video qualitative">
+      <div class="card-top"><div class="card-badges"><span class="bdg pd">Paid</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'UserTesting')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">UserTesting</span></div>
+      <div class="card-en">Video feedback from real users on your designs & prototypes</div>
+      <div class="card-ar">ردود فعل بالفيديو من مستخدمين حقيقيين على تصاميمك</div>
+      <div class="card-url">↗ usertesting.com</div>
+    </a>
+    <a class="card" href="https://www.optimalworkshop.com" target="_blank" data-k="optimal workshop information architecture card sort tree">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Optimal Workshop')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Optimal Workshop</span></div>
+      <div class="card-en">Information architecture testing — card sort, tree test & first-click</div>
+      <div class="card-ar">اختبار معمارية المعلومات — card sort وtree test</div>
+      <div class="card-url">↗ optimalworkshop.com</div>
+    </a>
+  </div>
+  <div class="sub-label">Image Optimization</div>
+  <div class="grid">
+    <a class="card" href="https://tinypng.com" target="_blank" data-k="tinypng compress images png jpg optimize size">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'TinyPNG')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">TinyPNG<span class="hot"></span></span></div>
+      <div class="card-en">Compress PNG & JPG without visible quality loss</div>
+      <div class="card-ar">ضغط PNG وJPG بدون فقدان جودة</div>
+      <div class="card-url">↗ tinypng.com</div>
+    </a>
+    <a class="card" href="https://squoosh.app" target="_blank" data-k="squoosh image compress optimize webp avif preview">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Squoosh')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Squoosh</span></div>
+      <div class="card-en">Advanced compression — WebP, AVIF with side-by-side preview</div>
+      <div class="card-ar">ضغط متقدم — WebP وAVIF مع مقارنة جانبية</div>
+      <div class="card-url">↗ squoosh.app</div>
+    </a>
+    <a class="card" href="https://remove.bg" target="_blank" data-k="remove bg background removal ai photo instant">
+      <div class="card-top"><div class="card-badges"><span class="bdg fm">Freemium</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Remove.bg')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Remove.bg</span></div>
+      <div class="card-en">AI background removal — instant, high quality on any photo</div>
+      <div class="card-ar">إزالة الخلفية بالـ AI — فوري وعالي الجودة</div>
+      <div class="card-url">↗ remove.bg</div>
+    </a>
+    <a class="card" href="https://www.photopea.com" target="_blank" data-k="photopea photoshop browser free psd edit online">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Photopea')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Photopea</span></div>
+      <div class="card-en">Free Photoshop in browser — opens PSD, XCF, Sketch files</div>
+      <div class="card-ar">Photoshop مجاني في المتصفح — يفتح PSD وXCF وSketch</div>
+      <div class="card-url">↗ photopea.com</div>
+    </a>
+  </div>
+  <div class="sub-label">Accessibility</div>
+  <div class="grid">
+    <a class="card" href="https://webaim.org/resources/contrastchecker" target="_blank" data-k="webaim contrast checker wcag accessibility color ratio">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'WebAIM Contrast')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">WebAIM Contrast</span></div>
+      <div class="card-en">WCAG contrast checker — AA & AAA compliance verification</div>
+      <div class="card-ar">فاحص WCAG contrast — تحقق من AA وAAA</div>
+      <div class="card-url">↗ webaim.org</div>
+    </a>
+    <a class="card" href="https://whocanuse.com" target="_blank" data-k="who can use color accessibility vision impairment">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'Who Can Use')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">Who Can Use</span></div>
+      <div class="card-en">See how color combos look for different vision impairments</div>
+      <div class="card-ar">شوف كيف تبدو ألوانك لمختلف أنواع ضعف البصر</div>
+      <div class="card-url">↗ whocanuse.com</div>
+    </a>
+    <a class="card" href="https://pagespeed.web.dev" target="_blank" data-k="pagespeed google performance core web vitals audit">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span></div><div class="card-actions"><button class="copy-btn" onclick="cp(event,'PageSpeed Insights')" title="Copy">⧉</button><button class="tr-btn" onclick="tr(event)">AR</button></div></div>
+      <div class="card-name-row"><span class="card-name">PageSpeed Insights</span></div>
+      <div class="card-en">Google performance audit — Core Web Vitals & suggestions</div>
+      <div class="card-ar">تدقيق أداء من Google — Core Web Vitals</div>
+      <div class="card-url">↗ pagespeed.web.dev</div>
+    </a>
+  </div>
+</div>
+
+</main>
+
+<footer>UI/UX Complete Reference &middot; Updated 2026 &middot; All resources handpicked &middot; Made by <span style="color:var(--accent);font-weight:700">Mina Magdy</span></footer>
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══════════════════════════════════════════
+// DASHBOARD DATA
+// ═══════════════════════════════════════════
+const DEFAULT_DATA = {
+  sections: [
+    {
+      id:'s1', title:'Daily Essentials',
+      sites:[
+        {name:'Google',url:'https://google.com'},
+        {name:'Gmail',url:'https://mail.google.com'},
+        {name:'YouTube',url:'https://youtube.com'},
+        {name:'WhatsApp Web',url:'https://web.whatsapp.com'},
+        {name:'Google Drive',url:'https://drive.google.com'},
+        {name:'ChatGPT',url:'https://chat.openai.com'},
+        {name:'Claude',url:'https://claude.ai'},
+        {name:'Notion',url:'https://notion.so'},
+        {name:'deepl',url:'https://deepl.com'},
+        {name:'arena.ai',url:'https://arena.ai'},
+        {name:'my site',url:'https://mina-magdy.com'}
+      ]
+    },
+    {
+      id:'s2', title:'Social & Network',
+      sites:[
+        {name:'Facebook',url:'https://facebook.com'},
+        {name:'Instagram',url:'https://instagram.com'},
+        {name:'LinkedIn',url:'https://linkedin.com'},
+        {name:'X (Twitter)',url:'https://x.com'},
+        {name:'Pinterest',url:'https://pinterest.com'}
+      ]
+    },
+    {
+      id:'s3', title:'Design Tools',
+      sites:[
+        {name:'Figma',url:'https://figma.com'},
+        {name:'Photoshop Web',url:'https://photoshop.adobe.com'},
+        {name:'Canva',url:'https://canva.com'},
+        {name:'Photopea',url:'https://photopea.com'},
+        {name:'Remove.bg',url:'https://remove.bg'},
+        {name:'Coolors',url:'https://coolors.co'},
+        {name:'Google Fonts',url:'https://fonts.google.com'},
+        {name:'Unsplash',url:'https://unsplash.com'},
+        {name:'Pexels',url:'https://pexels.com'},
+        {name:'Freepik',url:'https://freepik.com'},
+        {name:'Dribbble',url:'https://dribbble.com'},
+        {name:'Behance',url:'https://behance.net'},
+        {name:'Awwwards',url:'https://awwwards.com'},
+        {name:'unDraw',url:'https://undraw.co'},
+        {name:'Spline',url:'https://spline.design'}
+      ]
+    },
+    {
+      id:'s4', title:'AI — Image & Art',
+      sites:[
+        {name:'Midjourney',url:'https://midjourney.com'},
+        {name:'Leonardo AI',url:'https://leonardo.ai'},
+        {name:'Ideogram',url:'https://ideogram.ai'},
+        {name:'Adobe Firefly',url:'https://firefly.adobe.com'},
+        {name:'Krea AI',url:'https://krea.ai'},
+        {name:'Magnific AI',url:'https://magnific.ai'},
+        {name:'Recraft',url:'https://recraft.ai'},
+        {name:'gigapixel AI',url:'https://gigapixelai.com'}
+      ]
+    },
+    {
+      id:'s5', title:'AI — Video & Audio',
+      sites:[
+        {name:'Runway ML',url:'https://runwayml.com'},
+        {name:'Kling AI',url:'https://klingai.com'},
+        {name:'Pika Labs',url:'https://pika.art'},
+        {name:'Sora',url:'https://sora.com'},
+        {name:'Luma Dream',url:'https://lumalabs.ai'},
+        {name:'HeyGen',url:'https://heygen.com'},
+        {name:'ElevenLabs',url:'https://elevenlabs.io'},
+        {name:'Suno',url:'https://suno.com'},
+        {name:'meigen',url:'https://meigen.ai'},
+        {name:'Higgsfield',url:'https://higgsfield.ai'}
+      ]
+    },
+    {
+      id:'s6', title:'Dev & Hosting',
+      sites:[
+        {name:'GitHub',url:'https://github.com'},
+        {name:'Vercel',url:'https://vercel.com'},
+        {name:'GoDaddy',url:'https://dashboard.godaddy.com'}
+      ]
+    }
+  ]
+};
+
+const STORE_KEY = 'dash_v3';
+let data = JSON.parse(localStorage.getItem(STORE_KEY) || 'null') || JSON.parse(JSON.stringify(DEFAULT_DATA));
+let editMode = false;
+
+function save(){ localStorage.setItem(STORE_KEY, JSON.stringify(data)); }
+
+function getFav(url){
+  try{ return 'https://www.google.com/s2/favicons?domain='+new URL(url).hostname+'&sz=32'; }
+  catch{ return ''; }
+}
+function getDom(url){
+  try{ return new URL(url).hostname.replace('www.',''); }
+  catch{ return url; }
+}
+
+function renderDash(){
+  const cont = document.getElementById('dashContainer');
+  cont.innerHTML = '';
+  data.sections.forEach((sec,si) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'dash-section';
+    wrap.innerHTML = `
+      <div class="dash-sec-hdr">
+        <span class="dash-sec-title">${sec.title}</span>
+        <button class="dash-sec-del" onclick="delSection(${si})">Remove Section</button>
+      </div>
+      <div class="dash-grid" id="dg_${sec.id}"></div>`;
+    cont.appendChild(wrap);
+
+    const grid = wrap.querySelector('.dash-grid');
+    if(editMode) grid.classList.add('edit-mode');
+    sec.sites.forEach((s,i) => {
+      const a = document.createElement('a');
+      a.className = 'site-card';
+      a.href = editMode ? '#' : s.url;
+      if(!editMode) a.target = '_blank';
+      if(editMode) a.onclick = e => e.preventDefault();
+      a.innerHTML = `
+        <div class="site-favicon"><img src="${getFav(s.url)}" alt="" onerror="this.style.display='none'"></div>
+        <div class="site-info"><div class="site-name">${s.name}</div><div class="site-domain">${getDom(s.url)}</div></div>
+        <div class="site-del" onclick="delSite(event,${si},${i})">✕</div>`;
+      grid.appendChild(a);
+    });
+    if(editMode) wrap.querySelector('.dash-sec-hdr').classList.add('edit-mode');
+  });
+  // refresh select dropdown
+  populateSecSelect();
+}
+
+function populateSecSelect(){
+  const sel = document.getElementById('inSec');
+  if(!sel) return;
+  sel.innerHTML = data.sections.map((s,i) => `<option value="${i}">${s.title}</option>`).join('');
+}
+
+function toggleEdit(){
+  editMode = !editMode;
+  const btn = document.getElementById('editBtn');
+  btn.classList.toggle('active', editMode);
+  btn.textContent = editMode ? 'Done' : 'Edit';
+  renderDash();
+}
+
+// Add Site
+function showAddSite(){
+  const r = document.getElementById('addSiteRow');
+  const isV = r.classList.contains('visible');
+  document.getElementById('addSecRow').classList.remove('visible');
+  r.classList.toggle('visible', !isV);
+  document.getElementById('addSiteBtn').classList.toggle('active', !isV);
+  if(!isV){ populateSecSelect(); document.getElementById('inName').focus(); }
+}
+function cancelAdd(){
+  document.getElementById('addSiteRow').classList.remove('visible');
+  document.getElementById('addSiteBtn').classList.remove('active');
+  document.getElementById('inName').value='';
+  document.getElementById('inUrl').value='';
+}
+function addSite(){
+  let name = document.getElementById('inName').value.trim();
+  let url  = document.getElementById('inUrl').value.trim();
+  const si = parseInt(document.getElementById('inSec').value);
+  if(!name||!url) return;
+  if(!/^https?:\/\//.test(url)) url='https://'+url;
+  data.sections[si].sites.push({name,url});
+  save(); renderDash(); cancelAdd();
+  showToast('Added: '+name);
+}
+
+// Add Section
+function showAddSec(){
+  const r = document.getElementById('addSecRow');
+  const isV = r.classList.contains('visible');
+  document.getElementById('addSiteRow').classList.remove('visible');
+  r.classList.toggle('visible', !isV);
+  document.getElementById('addSecBtn').classList.toggle('active', !isV);
+  if(!isV) document.getElementById('inSecName').focus();
+}
+function cancelAddSec(){
+  document.getElementById('addSecRow').classList.remove('visible');
+  document.getElementById('addSecBtn').classList.remove('active');
+  document.getElementById('inSecName').value='';
+}
+function addSection(){
+  const name = document.getElementById('inSecName').value.trim();
+  if(!name) return;
+  const id = 'sec_'+Date.now();
+  data.sections.push({id, title:name, sites:[]});
+  save(); renderDash(); cancelAddSec();
+  showToast('Section created: '+name);
+}
+
+function delSite(e, si, i){
+  e.preventDefault(); e.stopPropagation();
+  const name = data.sections[si].sites[i].name;
+  data.sections[si].sites.splice(i,1);
+  save(); renderDash();
+  showToast('Removed: '+name);
+}
+function delSection(si){
+  if(!confirm('Remove section "'+data.sections[si].title+'" and all its sites?')) return;
+  data.sections.splice(si,1);
+  save(); renderDash();
+  showToast('Section removed');
+}
+
+// Enter key
+document.addEventListener('keydown', e => {
+  if(e.key==='Enter'){
+    if(document.getElementById('addSiteRow').classList.contains('visible')) addSite();
+    if(document.getElementById('addSecRow').classList.contains('visible')) addSection();
+  }
+});
+
+// ═══════════════════════════════════════════
+// REFERENCE FILTER
+// ═══════════════════════════════════════════
+let cur = 'all';
+function st(tab, el){
+  cur = tab;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
+  el.classList.add('on');
+  go();
+}
+function clearSearch(){
+  document.getElementById('si').value='';
+  document.getElementById('clrBtn').style.display='none';
+  go();
+}
+function go(){
+  const q = document.getElementById('si').value.trim().toLowerCase();
+  const clr = document.getElementById('clrBtn');
+  if(clr) clr.style.display = q ? 'block' : 'none';
+  const secs = document.querySelectorAll('.sec');
+  let tot = 0;
+  secs.forEach(s => {
+    const catOk = cur==='all' || cur===s.dataset.cat;
+    if(!catOk){ s.classList.remove('on'); return; }
+    if(s.dataset.cat==='dashboard'){ s.classList.add('on'); return; }
+    if(!q){
+      s.classList.add('on');
+      s.querySelectorAll('.card').forEach(c => c.classList.remove('hid'));
+      tot++;
+      return;
+    }
+    const cards = s.querySelectorAll('.card');
+    let vis = false;
+    cards.forEach(card => {
+      const txt = [(card.dataset.k||''),(card.querySelector('.card-name')?.textContent||''),(card.querySelector('.card-en')?.textContent||'')].join(' ').toLowerCase();
+      const ok = txt.includes(q);
+      card.classList.toggle('hid', !ok);
+      if(ok){ vis=true; tot++; }
+    });
+    s.classList.toggle('on', vis);
+  });
+  document.getElementById('emp').style.display = (q && tot===0) ? 'block' : 'none';
+}
+
+// ═══════════════════════════════════════════
+// COPY BUTTON
+// ═══════════════════════════════════════════
+function cp(e, name){
+  e.preventDefault(); e.stopPropagation();
+  const btn = e.currentTarget;
+  const doIt = () => {
+    btn.classList.add('copied'); btn.textContent='✓';
+    showToast('Copied: '+name);
+    setTimeout(()=>{ btn.classList.remove('copied'); btn.textContent='⧉'; }, 2000);
+  };
+  navigator.clipboard.writeText(name).then(doIt).catch(()=>{
+    const ta=document.createElement('textarea');
+    ta.value=name; ta.style.cssText='position:fixed;opacity:0';
+    document.body.appendChild(ta); ta.select(); document.execCommand('copy');
+    document.body.removeChild(ta); doIt();
+  });
+}
+
+// ═══════════════════════════════════════════
+// TRANSLATE BUTTON (toggle EN/AR)
+// ═══════════════════════════════════════════
+function tr(e){
+  e.preventDefault(); e.stopPropagation();
+  const btn = e.currentTarget;
+  const card = btn.closest('.card');
+  const en = card.querySelector('.card-en');
+  const ar = card.querySelector('.card-ar');
+  if(!ar) return;
+  const showing = ar.classList.contains('show');
+  if(showing){
+    ar.classList.remove('show');
+    en.style.display = '';
+    btn.classList.remove('on');
+    btn.textContent = 'AR';
+  } else {
+    ar.classList.add('show');
+    en.style.display = 'none';
+    btn.classList.add('on');
+    btn.textContent = 'EN';
+  }
+}
+
+// ═══════════════════════════════════════════
+// TOAST
+// ═══════════════════════════════════════════
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=> t.classList.remove('show'), 2200);
+}
+
+// ═══════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════
+renderDash();
+go();
+</script>
+</body>
+</html>
