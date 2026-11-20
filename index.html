@@ -1445,94 +1445,438 @@ footer{text-align:center;padding:24px 40px;border-top:1px solid var(--border);co
 // DASHBOARD DATA
 // ═══════════════════════════════════════════
 const DEFAULT_DATA = {
-  sections: [
+  "sections": [
     {
-      id:'s1', title:'Daily Essentials',
-      sites:[
-        {name:'Google',url:'https://google.com'},
-        {name:'Gmail',url:'https://mail.google.com'},
-        {name:'YouTube',url:'https://youtube.com'},
-        {name:'WhatsApp Web',url:'https://web.whatsapp.com'},
-        {name:'Google Drive',url:'https://drive.google.com'},
-        {name:'ChatGPT',url:'https://chat.openai.com'},
-        {name:'Claude',url:'https://claude.ai'},
-        {name:'Notion',url:'https://notion.so'},
-        {name:'deepl',url:'https://deepl.com'},
-        {name:'arena.ai',url:'https://arena.ai'},
-        {name:'my site',url:'https://mina-magdy.com'}
+      "id": "daily",
+      "title": "Daily Essentials",
+      "sites": [
+        {
+          "name": "Google",
+          "url": "https://google.com"
+        },
+        {
+          "name": "Gmail",
+          "url": "https://mail.google.com"
+        },
+        {
+          "name": "Outlook",
+          "url": "https://outlook.office.com/mail"
+        },
+        {
+          "name": "Jira",
+          "url": "https://start.atlassian.com"
+        },
+        {
+          "name": "Arab Finance",
+          "url": "https://react.arabfinance.com/en/home"
+        },
+        {
+          "name": "Google Drive",
+          "url": "https://drive.google.com"
+        },
+        {
+          "name": "WhatsApp Web",
+          "url": "https://web.whatsapp.com"
+        },
+        {
+          "name": "YouTube",
+          "url": "https://youtube.com"
+        },
+        {
+          "name": "Notion",
+          "url": "https://notion.so"
+        },
+        {
+          "name": "deepl",
+          "url": "https://deepl.com"
+        },
+        {
+          "name": "ChatGPT",
+          "url": "https://chat.openai.com"
+        },
+        {
+          "name": "Claude",
+          "url": "https://claude.ai"
+        },
+        {
+          "name": "Gemini",
+          "url": "https://gemini.google.com"
+        },
+        {
+          "name": "Google Flow",
+          "url": "https://labs.google/fx/tools/flow"
+        },
+        {
+          "name": "arena.ai",
+          "url": "https://arena.ai"
+        },
+        {
+          "name": "Udemy",
+          "url": "https://www.udemy.com"
+        }
       ]
     },
     {
-      id:'s2', title:'Social & Network',
-      sites:[
-        {name:'Facebook',url:'https://facebook.com'},
-        {name:'Instagram',url:'https://instagram.com'},
-        {name:'LinkedIn',url:'https://linkedin.com'},
-        {name:'X (Twitter)',url:'https://x.com'},
-        {name:'Pinterest',url:'https://pinterest.com'}
+      "id": "mysite",
+      "title": "My Work & Dev",
+      "sites": [
+        {
+          "name": "my site",
+          "url": "https://mina-magdy.com"
+        },
+        {
+          "name": "MinaPro Studio",
+          "url": "https://studio.mina-magdy.com"
+        },
+        {
+          "name": "Arab Finance",
+          "url": "https://react.arabfinance.com/en/home"
+        },
+        {
+          "name": "GitHub",
+          "url": "https://github.com"
+        },
+        {
+          "name": "Vercel",
+          "url": "https://vercel.com"
+        },
+        {
+          "name": "netlify",
+          "url": "https://app.netlify.com/projects/classy-biscuit-94d2cc/overview"
+        },
+        {
+          "name": "GoDaddy",
+          "url": "https://dashboard.godaddy.com"
+        }
       ]
     },
     {
-      id:'s3', title:'Design Tools',
-      sites:[
-        {name:'Figma',url:'https://figma.com'},
-        {name:'Photoshop Web',url:'https://photoshop.adobe.com'},
-        {name:'Canva',url:'https://canva.com'},
-        {name:'Photopea',url:'https://photopea.com'},
-        {name:'Remove.bg',url:'https://remove.bg'},
-        {name:'Coolors',url:'https://coolors.co'},
-        {name:'Google Fonts',url:'https://fonts.google.com'},
-        {name:'Unsplash',url:'https://unsplash.com'},
-        {name:'Pexels',url:'https://pexels.com'},
-        {name:'Freepik',url:'https://freepik.com'},
-        {name:'Dribbble',url:'https://dribbble.com'},
-        {name:'Behance',url:'https://behance.net'},
-        {name:'Awwwards',url:'https://awwwards.com'},
-        {name:'unDraw',url:'https://undraw.co'},
-        {name:'Spline',url:'https://spline.design'}
+      "id": "jobs",
+      "title": "Jobs",
+      "sites": [
+        {
+          "name": "Wuzzuf",
+          "url": "https://wuzzuf.net"
+        },
+        {
+          "name": "Forasna",
+          "url": "https://forasna.com"
+        },
+        {
+          "name": "Jobzella",
+          "url": "https://www.jobzella.com"
+        },
+        {
+          "name": "Indeed Egypt",
+          "url": "https://eg.indeed.com"
+        },
+        {
+          "name": "Bayt",
+          "url": "https://www.bayt.com"
+        },
+        {
+          "name": "Gulf Talent",
+          "url": "https://www.gulftalent.com"
+        },
+        {
+          "name": "Naukrigulf",
+          "url": "https://www.naukrigulf.com"
+        },
+        {
+          "name": "LinkedIn Jobs",
+          "url": "https://www.linkedin.com/jobs"
+        },
+        {
+          "name": "Wellfound",
+          "url": "https://wellfound.com"
+        },
+        {
+          "name": "Dribbble Jobs",
+          "url": "https://dribbble.com/jobs"
+        },
+        {
+          "name": "RemoteDXB",
+          "url": "https://www.remotedxb.com"
+        },
+        {
+          "name": "Job Tracker (Sheet)",
+          "url": "https://docs.google.com/spreadsheets/d/171Rhcex5FGVMd04EwEXFqf8UAkGnYuGBKXshzxg8ik8"
+        }
       ]
     },
     {
-      id:'s4', title:'AI — Image & Art',
-      sites:[
-        {name:'Midjourney',url:'https://midjourney.com'},
-        {name:'Leonardo AI',url:'https://leonardo.ai'},
-        {name:'Ideogram',url:'https://ideogram.ai'},
-        {name:'Adobe Firefly',url:'https://firefly.adobe.com'},
-        {name:'Krea AI',url:'https://krea.ai'},
-        {name:'Magnific AI',url:'https://magnific.ai'},
-        {name:'Recraft',url:'https://recraft.ai'},
-        {name:'gigapixel AI',url:'https://gigapixelai.com'}
+      "id": "insp",
+      "title": "Visual Inspiration",
+      "sites": [
+        {
+          "name": "Pinterest",
+          "url": "https://pinterest.com"
+        },
+        {
+          "name": "Dribbble",
+          "url": "https://dribbble.com"
+        },
+        {
+          "name": "Behance",
+          "url": "https://behance.net"
+        },
+        {
+          "name": "Mobbin",
+          "url": "https://mobbin.com"
+        },
+        {
+          "name": "Godly",
+          "url": "https://godly.website"
+        },
+        {
+          "name": "Land-book",
+          "url": "https://land-book.com"
+        },
+        {
+          "name": "Awwwards",
+          "url": "https://awwwards.com"
+        },
+        {
+          "name": "SiteInspire",
+          "url": "https://www.siteinspire.com"
+        },
+        {
+          "name": "Savee",
+          "url": "https://savee.it"
+        },
+        {
+          "name": "Cosmos",
+          "url": "https://www.cosmos.so"
+        },
+        {
+          "name": "Refero",
+          "url": "https://refero.design"
+        },
+        {
+          "name": "Lapa Ninja",
+          "url": "https://www.lapa.ninja"
+        },
+        {
+          "name": "Screenlane",
+          "url": "https://screenlane.com"
+        },
+        {
+          "name": "Minimal Gallery",
+          "url": "https://minimal.gallery"
+        },
+        {
+          "name": "Page Flows",
+          "url": "https://pageflows.com"
+        },
+        {
+          "name": "Collect UI",
+          "url": "https://collectui.com"
+        },
+        {
+          "name": "SaaSFrame",
+          "url": "https://saasframe.io"
+        },
+        {
+          "name": "Muzli",
+          "url": "https://muz.li"
+        }
       ]
     },
     {
-      id:'s5', title:'AI — Video & Audio',
-      sites:[
-        {name:'Runway ML',url:'https://runwayml.com'},
-        {name:'Kling AI',url:'https://klingai.com'},
-        {name:'Pika Labs',url:'https://pika.art'},
-        {name:'Sora',url:'https://sora.com'},
-        {name:'Luma Dream',url:'https://lumalabs.ai'},
-        {name:'HeyGen',url:'https://heygen.com'},
-        {name:'ElevenLabs',url:'https://elevenlabs.io'},
-        {name:'Suno',url:'https://suno.com'},
-        {name:'meigen',url:'https://meigen.ai'},
-        {name:'Higgsfield',url:'https://higgsfield.ai'}
+      "id": "tools",
+      "title": "Design Tools",
+      "sites": [
+        {
+          "name": "Figma",
+          "url": "https://figma.com"
+        },
+        {
+          "name": "Photoshop Web",
+          "url": "https://photoshop.adobe.com"
+        },
+        {
+          "name": "Canva",
+          "url": "https://canva.com"
+        },
+        {
+          "name": "Photopea",
+          "url": "https://photopea.com"
+        },
+        {
+          "name": "Remove.bg",
+          "url": "https://remove.bg"
+        },
+        {
+          "name": "Spline",
+          "url": "https://spline.design"
+        }
       ]
     },
     {
-      id:'s6', title:'Dev & Hosting',
-      sites:[
-        {name:'GitHub',url:'https://github.com'},
-        {name:'Vercel',url:'https://vercel.com'},
-        {name:'GoDaddy',url:'https://dashboard.godaddy.com'}
+      "id": "res",
+      "title": "Colors, Fonts & Assets",
+      "sites": [
+        {
+          "name": "Coolors",
+          "url": "https://coolors.co"
+        },
+        {
+          "name": "Google Fonts",
+          "url": "https://fonts.google.com"
+        },
+        {
+          "name": "Color Contrast Checker",
+          "url": "https://webaim.org/resources/contrastchecker/"
+        },
+        {
+          "name": "sixtythirtyten - ui",
+          "url": "https://www.sixtythirtyten.co/"
+        },
+        {
+          "name": "Unsplash",
+          "url": "https://unsplash.com"
+        },
+        {
+          "name": "Pexels",
+          "url": "https://pexels.com"
+        },
+        {
+          "name": "Freepik",
+          "url": "https://freepik.com"
+        },
+        {
+          "name": "unDraw",
+          "url": "https://undraw.co"
+        }
+      ]
+    },
+    {
+      "id": "social",
+      "title": "Social & Network",
+      "sites": [
+        {
+          "name": "LinkedIn",
+          "url": "https://linkedin.com"
+        },
+        {
+          "name": "Facebook",
+          "url": "https://facebook.com"
+        },
+        {
+          "name": "Instagram",
+          "url": "https://instagram.com"
+        },
+        {
+          "name": "X (Twitter)",
+          "url": "https://x.com"
+        }
+      ]
+    },
+    {
+      "id": "aiimg",
+      "title": "AI: Image & Art",
+      "sites": [
+        {
+          "name": "Midjourney",
+          "url": "https://midjourney.com"
+        },
+        {
+          "name": "Leonardo AI",
+          "url": "https://leonardo.ai"
+        },
+        {
+          "name": "Ideogram",
+          "url": "https://ideogram.ai"
+        },
+        {
+          "name": "Adobe Firefly",
+          "url": "https://firefly.adobe.com"
+        },
+        {
+          "name": "Krea AI",
+          "url": "https://krea.ai"
+        },
+        {
+          "name": "Magnific AI",
+          "url": "https://magnific.ai"
+        },
+        {
+          "name": "Recraft",
+          "url": "https://recraft.ai"
+        },
+        {
+          "name": "gigapixel AI",
+          "url": "https://gigapixelai.com"
+        }
+      ]
+    },
+    {
+      "id": "aivid",
+      "title": "AI: Video & Audio",
+      "sites": [
+        {
+          "name": "Runway ML",
+          "url": "https://runwayml.com"
+        },
+        {
+          "name": "Kling AI",
+          "url": "https://klingai.com"
+        },
+        {
+          "name": "Pika Labs",
+          "url": "https://pika.art"
+        },
+        {
+          "name": "Sora",
+          "url": "https://sora.com"
+        },
+        {
+          "name": "Luma Dream",
+          "url": "https://lumalabs.ai"
+        },
+        {
+          "name": "HeyGen",
+          "url": "https://heygen.com"
+        },
+        {
+          "name": "ElevenLabs",
+          "url": "https://elevenlabs.io"
+        },
+        {
+          "name": "Suno",
+          "url": "https://suno.com"
+        },
+        {
+          "name": "meigen",
+          "url": "https://meigen.ai"
+        },
+        {
+          "name": "Higgsfield",
+          "url": "https://higgsfield.ai"
+        }
       ]
     }
   ]
 };
 
-const STORE_KEY = 'dash_v3';
-let data = JSON.parse(localStorage.getItem(STORE_KEY) || 'null') || JSON.parse(JSON.stringify(DEFAULT_DATA));
+const STORE_KEY = 'dash_v4';
+function loadData(){
+  const cur = localStorage.getItem(STORE_KEY);
+  if(cur){ try{ return JSON.parse(cur); }catch(e){} }
+  const d = JSON.parse(JSON.stringify(DEFAULT_DATA));
+  // migrate: keep anything added by hand in the old layout
+  try{
+    const old = JSON.parse(localStorage.getItem('dash_v3') || 'null');
+    if(old){
+      const norm = n => n.toLowerCase().replace(/[^a-z0-9]/g,'');
+      const known = new Set(d.sections.flatMap(s => s.sites.map(x => norm(x.name))));
+      const extra = old.sections.flatMap(s => s.sites).filter(x => !known.has(norm(x.name)));
+      if(extra.length) d.sections.push({id:'other', title:'Other', sites:extra});
+    }
+  }catch(e){}
+  return d;
+}
+let data = loadData();
 let editMode = false;
 
 function save(){ localStorage.setItem(STORE_KEY, JSON.stringify(data)); }
