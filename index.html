@@ -105,6 +105,51 @@ main{max-width:1200px;margin:0 auto;padding:36px 40px 80px}
 footer{text-align:center;padding:24px 40px;border-top:1px solid var(--border);color:var(--dim);font-size:11px;font-family:'Poppins',sans-serif;letter-spacing:.04em}
 @media(max-width:768px){header,main{padding-left:16px;padding-right:16px}.toolbar-inner{padding:0 16px}.grid{grid-template-columns:1fr 1fr}.dash-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}h1{font-size:24px}.stats{gap:20px}.stat-n{font-size:22px}.search-wrap{width:140px}}
 @media(max-width:420px){.grid,.dash-grid{grid-template-columns:1fr 1fr}h1{font-size:20px}}
+
+/* TABS: clearer, wrap into rows, search stays separate */
+.toolbar-inner{height:auto;align-items:flex-start;padding-top:12px;padding-bottom:12px}
+.tabs{flex-wrap:wrap;overflow:visible;gap:8px;min-width:0}
+.tab{font-size:13px;padding:8px 16px;color:#d4d4d4;border-color:#3a3a3a;background:#161616}
+.tab:hover{border-color:var(--accent);color:#fff}
+.tab.on{color:#fff;box-shadow:0 0 0 3px rgba(249,115,22,.22)}
+.search-wrap{width:230px;margin-top:0}
+.search-wrap input{padding:9px 12px 9px 32px}
+/* SKILLS */
+.howto{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.how-step{flex:1;min-width:210px;display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 14px;font-size:13px;color:#ddd}
+.how-step b{width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.rule-box{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:10px;padding:14px 18px;margin-bottom:14px;font-size:14px;color:#ddd}
+.rule-box b{color:#fff;font-size:14px}.rule-box ul{margin:8px 0 0 18px;line-height:1.8}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
+.flow span{background:var(--bg3);border:1px solid var(--border);border-radius:99px;padding:6px 14px;font-size:12px;font-weight:600;color:#fff}
+.flow i{color:var(--accent);font-style:normal;font-size:13px}
+.skill-group{margin-top:30px}
+.grp-title{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.grp-title h3{font-size:17px;font-weight:700;color:#fff;letter-spacing:-.01em}
+.grp-n{width:28px;height:28px;border-radius:8px;background:var(--accent);color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.skill-table-wrap{border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.skill-table{width:100%;border-collapse:collapse;font-size:14px}
+.skill-table thead th{background:#1f1f1f;color:#fff;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;padding:11px 16px;border-bottom:1px solid var(--border)}
+.skill-table td{padding:14px 16px;vertical-align:top;border-bottom:1px solid var(--border);background:var(--card)}
+.skill-table tr:last-child td{border-bottom:none}
+.skill-table tr:hover td{background:var(--card-h)}
+.skill-row.hid{display:none}
+.c-want{width:24%;color:#fff;font-weight:600;line-height:1.5}
+.c-skill{width:30%}
+.c-prompt{width:46%}
+.sk-chip{display:inline-block;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;font-weight:600;color:#fff;background:#262626;border:1px solid #3d3d3d;border-radius:7px;padding:4px 9px;margin:0 6px 6px 0;word-break:break-word}
+.sk-chip.soon{border-style:dashed;color:#fbbf24}
+.sk-note{font-size:11px;color:var(--fm);font-weight:600}
+.pbox{display:flex;gap:10px;align-items:flex-start;background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:10px 12px}
+.ptxt{flex:1;font-size:13px;line-height:1.55;color:#e8e8e8}
+.pcopy{flex-shrink:0;background:var(--accent);color:#fff;border:none;border-radius:6px;padding:6px 12px;font-size:12px;font-weight:700;font-family:'Poppins',sans-serif;cursor:pointer}
+.pcopy:hover{background:var(--accent-h)}.pcopy.ok{background:var(--free);color:#05210f}
+.rule-box.notes{margin-top:30px}
+@media(max-width:820px){.skill-table thead{display:none}.skill-table,.skill-table tbody,.skill-table tr,.skill-table td{display:block;width:100%}.skill-table td{border-bottom:none;padding:8px 14px}.skill-table tr{border-bottom:1px solid var(--border);padding:6px 0}.c-want,.c-skill,.c-prompt{width:100%}.toolbar-inner{flex-direction:column}.search-wrap{width:100%}}
+/* UX */
+.ux-frame{display:none;margin-top:18px}
+body.tab-ux .ux-frame{display:block}
+.ux-frame iframe{width:100%;height:calc(100vh - 150px);min-height:560px;border:1px solid var(--border);border-radius:12px;background:#0d0d0d}
 </style>
 </head>
 <body>
@@ -115,7 +160,7 @@ footer{text-align:center;padding:24px 40px;border-top:1px solid var(--border);co
   <div class="stats">
     <div><div class="stat-n">150+</div><div class="stat-l">Resources</div></div>
     <div><div class="stat-n">40+</div><div class="stat-l">Figma Plugins</div></div>
-    <div><div class="stat-n">10</div><div class="stat-l">Categories</div></div>
+    <div><div class="stat-n">12</div><div class="stat-l">Categories</div></div>
     <div><div class="stat-n">2026</div><div class="stat-l">Updated</div></div>
   </div>
 </header>
@@ -125,6 +170,8 @@ footer{text-align:center;padding:24px 40px;border-top:1px solid var(--border);co
     <div class="tabs">
       <button class="tab on" onclick="st('all',this)">All</button>
       <button class="tab" onclick="st('dashboard',this)">My Dashboard</button>
+      <button class="tab" onclick="st('skills',this)">Skills</button>
+      <button class="tab" onclick="st('ux',this)">UX Reference</button>
       <button class="tab" onclick="st('icons',this)">Icons</button>
       <button class="tab" onclick="st('components',this)">Components</button>
       <button class="tab" onclick="st('wireframe',this)">Wireframe</button>
@@ -167,6 +214,222 @@ footer{text-align:center;padding:24px 40px;border-top:1px solid var(--border);co
   <div id="dashContainer"></div>
 </div>
 
+
+<div class="sec on" data-cat="skills">
+  <div class="sec-hdr"><div class="sec-title"><h2>Skills for Design</h2></div></div>
+  <div class="howto"><div class="how-step"><b>1</b><span>Find your task in the tables below</span></div><div class="how-step"><b>2</b><span>Press Copy on the example prompt</span></div><div class="how-step"><b>3</b><span>Paste it in Claude Code and edit the screen name</span></div></div>
+  <div class="rule-box"><b>Golden rules</b><ul><li>Pick ONE main UI skill per design: hallmark, ui-ux-pro-max-design-intel or taste-skill. Do not mix them.</li><li>Add ONE style skill on top if you want a specific look.</li><li>Finish with a review skill.</li><li>Name the skill in your prompt and end it with: English only.</li></ul></div>
+  <div class="flow"><span>1 Main UI skill</span><i>→</i><span>2 Style</span><i>→</i><span>3 Wireframe + icons</span><i>→</i><span>4 full-polish</span><i>→</i><span>5 Review</span><i>→</i><span>6 RTL if needed</span></div>
+  <div class="skill-group">
+    <div class="grp-title"><span class="grp-n">1</span><h3>Start a new design</h3></div>
+    <div class="skill-table-wrap"><table class="skill-table"><thead><tr><th>I want</th><th>Skill to call</th><th>Example prompt</th></tr></thead><tbody>
+      <tr class="skill-row" data-k="hallmark bold look with personality ui use the hallmark skill to design a finance home screen in figma. english only.">
+        <td class="c-want">Bold look with personality</td>
+        <td class="c-skill"><span class="sk-chip">hallmark</span></td>
+        <td class="c-prompt"><div class="pbox"><span class="ptxt">Use the hallmark skill to design a finance home screen in Figma. English only.</span><button class="pcopy" type="button" onclick="copyPrompt(this)" data-p="Use the hallmark skill to design a finance home screen in Figma. English only.">Copy</button></div></td>
+      </tr>
+      <tr class="skill-row" data-k="ui-ux-pro-max-design-intel complete structure, colors, fonts, charts ui use ui-ux-pro-max-design-intel to design a dashboard screen in figma. english only.">
+        <td class="c-want">Complete structure, colors, fonts, charts</td>
+        <td class="c-skill"><span class="sk-chip">ui-ux-pro-max-design-intel</span></td>
+        <td class="c-prompt"><div class="pbox"><span class="ptxt">Use ui-ux-pro-max-design-intel to design a dashboard screen in Figma. English only.</span><button class="pcopy" type="button" onclick="copyPrompt(this)" data-p="Use ui-ux-pro-max-design-intel to design a dashboard screen in Figma. English only.">Copy</button></div></td>
+      </tr>
+      <tr class="skill-row" data-k="taste-skill clean and safe look ui use the taste-skill to design a login screen in figma. english only.">
+        <td class="c-want">Clean and safe look</td>
+        <td class="c-skill"><span class="sk-chip">taste-skill</span></td>
+        <td class="c-prompt"><div class="pbox"><span class="ptxt">Use the taste-skill to design a login screen in Figma. English only.</span><button class="pcopy" type="button" onclick="copyPrompt(this)" data-p="Use the taste-skill to design a login screen in Figma. English only.">Copy</button></div></td>
+      </tr>
+      <tr class="skill-row" data-k="pro-ui-taste avoid the generic ai look ui apply pro-ui-taste to this frame. english only.">
+        <td class="c-want">Avoid the generic AI look</td>
+        <td class="c-skill"><span class="sk-chip">pro-ui-taste</span></td>
+        <td class="c-prompt"><div class="pbox"><span class="ptxt">Apply pro-ui-taste to this frame. English only.</span><button class="pcopy" type="button" onclick="copyPrompt(this)" data-p="Apply pro-ui-taste to this frame. English only.">Copy</button></div></td>
+      </tr>
+      <tr class="skill-row" data-k="web-redesign-from-reference redesign from a reference site ui redesign my page in the style of this reference link. english only.">
+        <td class="c-want">Redesign from a reference site</td>
+        <td class="c-skill"><span class="sk-chip">web-redesign-from-reference</span></td>
+        <td class="c-prompt"><div class="pbox"><span class="ptxt">Redesign my page in the style of this reference link. English only.</span><button class="pcopy" type="button" onclick="copyPrompt(this)" data-p="Redesign my page in the style of this reference link. English only.">Copy</button></div></td>
+      </tr>
+    </tbody></table></div>
+  </div>
+  <div class="skill-group">
+    <div class="grp-title"><span class="grp-n">2</span><h3>Pick a style</h3></div>
+    <div class="skill-table-wrap"><table class="skill-table"><thead><tr><th>I want</th><th>Skill to call</th><th>Example prompt</th></tr></thead><tbody>
+      <tr class="skill-row" data-k="glassmorphism frosted glass, blur style use hallmark with the glassmorphism skill for a wallet screen. english only.">
+        <td class="c-want">Frosted glass, blur</td>
+        <td class="c-skill"><span class="sk-chip">glassmorphism</span></td>
+        <td class="c-prompt"><div class="pbox"><span class="ptxt">Use hallmark with the glassmorphism skill for a wallet screen. English only.</span><button class="pcopy" type="button" onclick="copyPrompt(this)" data-p="Use hallmark with the glassmorphism skill for a wallet screen. English only.">Copy</button></div></td>
+      </tr>
+      <tr class="skill-row" data-k="neumorphism, claymorphism soft shadows, 3d buttons style use the claymorphism skill for a settings screen. english only.">
+        <td class="c-want">Soft shadows, 3D buttons</td>
+        <td class="c-skill"><span class="sk-chip">neumorphism</span><span class="sk-chip">claymorphism</span></td>
+        <td class="c-prompt"><div class="pbox"><span class="ptxt">Use the claymorphism skill for a settings screen. English only.</span><button class="pcopy" type="button" onclick="copyPrompt(this)" data-p="Use the claymorphism skill for a settings screen. English only.">Copy</button></div></td>
+      </tr>
+      <tr class="skill-row" data-k="minimalism, flat-design, material-design simple and clean style use the minimalism skill for a transfer screen. english only.">
+        <td class="c-want">Simple and clean</td>
+        <td class="c-skill"><span class="sk-chip">minimalism</span><span class="sk-chip">flat-design</span><span class="sk-chip">material-design</span></td>
+        <td class="c-prompt"><div class="pbox"><span class="ptxt">Use the minimalism skill for a transfer screen. English only.</span><button class="pcopy" type="button" onclick="copyPrompt(this)" data-p="Use the minimalism skill for a transfer screen. English only.">Copy</button></div></td>
+      </tr>
+      <tr class="skill-row" data-k="bento-ui modern card grid style use hallmark with the bento-ui skill for a portfolio overview screen. english only.">
+        <td class="c-want">Modern card grid</td>
+        <td class="c-skill"><span class="sk-chip">bento-ui</span></td>
+        <td class="c-prompt"><div class="pbox"><span class="ptxt">Use hallmark with the bento-ui skill for a portfolio overview screen. English only.</span><button class="pcopy" type="button" onclick="copyPrompt(this)" data-p="Use hallmark with the bento-ui skill for a portfolio overview screen. English only.">Copy</button></div></td>
+      </tr>
+      <tr class="skill-row" data-k="aurora-ui gradient glow style use the aurora-ui skill for an onboarding screen. english only.">
+        <td class="c-want">Gradient glow</td>
+        <td class="c-skill"><span class="sk-chip">aurora-ui</span></td>
+        <td class="c-prompt"><div class="pbox"><span class="ptxt">Use the aurora-ui skill for an onboarding screen. English only.</span><button class="pcopy" type="button" onclick="copyPrompt(this)" data-p="Use the aurora-ui skill for an onboarding screen. English only.">Copy</button></div></td>
+      </tr>
+      <tr class="skill-row" data-k="dark-mode dark theme style use the dark-mode skill to create the dark version of this frame. english only.">
+        <td class="c-want">Dark theme</td>
+        <td class="c-skill"><span class="sk-chip">dark-mode</span></td>
+        <td class="c-prompt"><div class="pbox"><span class="ptxt">Use the dark-mode skill to create the dark version of this frame. English only.</span><button class="pcopy" type="button" onclick="copyPrompt(this)" data-p="Use the dark-mode skill to create the dark version of this frame. English only.">Copy</button></div></td>
+      </tr>
+      <tr class="skill-row" data-k="dashboard-design, card-based-design, data-dense-design fintech and data screens style use dashboard-design and data-dense-design for a trading dashboard. english only.">
+        <td class="c-want">Fintech and data screens</td>
+        <td class="c-skill"><span class="sk-chip">dashboard-design</span><span class="sk-chip">card-based-design</span><span class="sk-chip">data-dense-design</span></td>
+        <td class="c-prompt"><div class="pbox"><span class="ptxt">Use dashboard-design and data-dense-design for a trading dashboard. English only.</span><button class="pcopy" type="button" onclick="copyPrompt(this)" data-p="Use dashboard-design and data-dense-design for a trading dashboard. English only.">Copy</button></div></td>
+      </tr>
+    </tbody></table></div>
+  </div>
+  <div class="skill-group">
+    <div class="grp-title"><span class="grp-n">3</span><h3>Mobile</h3></div>
+    <div class="skill-table-wrap"><table class="skill-table"><thead><tr><th>I want</th><th>Skill to call</th><th>Example prompt</th></tr></thead><tbody>
+      <tr class="skill-row" data-k="mobile-design-ios iphone patterns mobile use mobile-design-ios to review this screen. english only.">
+        <td class="c-want">iPhone patterns</td>
+        <td class="c-skill"><span class="sk-chip">mobile-design-ios</span></td>
+        <td class="c-prompt"><div class="pbox"><span class="ptxt">Use mobile-design-ios to review this screen. English only.</span><button class="pcopy" type="button" onclick="copyPrompt(this)" data-p="Use mobile-design-ios to review this screen. English only.">Copy</button></div></td>
+      </tr>
+      <tr class="skill-row" data-k="mobile-design-android android patterns mobile use mobile-design-android to review this screen. english only.">
+        <td class="c-want">Android patterns</td>
+        <td class="c-skill"><span class="sk-chip">mobile-design-android</span></td>
+        <td class="c-prompt"><div class="pbox"><span class="ptxt">Use mobile-design-android to review this screen. English only.</span><button class="pcopy" type="button" onclick="copyPrompt(this)" data-p="Use mobile-design-android to review this screen. English only.">Copy</button></div></td>
+      </tr>
+    </tbody></table></div>
+  </div>
+  <div class="skill-group">
+    <div class="grp-title"><span class="grp-n">4</span><h3>Wireframe and sketch</h3></div>
+    <div class="skill-table-wrap"><table class="skill-table"><thead><tr><th>I want</th><th>Skill to call</th><th>Example prompt</th></tr></thead><tbody>
+      <tr class="skill-row" data-k="wireframe-structure-polish check my wireframe spacing and grid wireframe use wireframe-structure-polish on the selected frame. english only.">
+        <td class="c-want">Check my wireframe spacing and grid</td>
+        <td class="c-skill"><span class="sk-chip">wireframe-structure-polish</span></td>
+        <td class="c-prompt"><div class="pbox"><span class="ptxt">Use wireframe-structure-polish on the selected frame. English only.</span><button class="pcopy" type="button" onclick="copyPrompt(this)" data-p="Use wireframe-structure-polish on the selected frame. English only.">Copy</button></div></td>
+      </tr>
+      <tr class="skill-row" data-k="wireframe-icon-fill fill icon placeholders wireframe use wireframe-icon-fill on this wireframe. english only.">
+        <td class="c-want">Fill icon placeholders</td>
+        <td class="c-skill"><span class="sk-chip">wireframe-icon-fill</span></td>
+        <td class="c-prompt"><div class="pbox"><span class="ptxt">Use wireframe-icon-fill on this wireframe. English only.</span><button class="pcopy" type="button" onclick="copyPrompt(this)" data-p="Use wireframe-icon-fill on this wireframe. English only.">Copy</button></div></td>
+      </tr>
+      <tr class="skill-row" data-k="sketch to wireframe (skill to be built: sketch-to-figma) sketch to wireframe wireframe look at the sketch at [path] and build a grayscale wireframe in figma. english only.">
+        <td class="c-want">Sketch to wireframe</td>
+        <td class="c-skill"><span class="sk-chip soon">sketch-to-figma</span><span class="sk-note">to be built</span></td>
+        <td class="c-prompt"><div class="pbox"><span class="ptxt">Look at the sketch at [path] and build a grayscale wireframe in Figma. English only.</span><button class="pcopy" type="button" onclick="copyPrompt(this)" data-p="Look at the sketch at [path] and build a grayscale wireframe in Figma. English only.">Copy</button></div></td>
+      </tr>
+    </tbody></table></div>
+  </div>
+  <div class="skill-group">
+    <div class="grp-title"><span class="grp-n">5</span><h3>Arabic and RTL</h3></div>
+    <div class="skill-table-wrap"><table class="skill-table"><thead><tr><th>I want</th><th>Skill to call</th><th>Example prompt</th></tr></thead><tbody>
+      <tr class="skill-row" data-k="rtl-arabic-mirror english screen to arabic rtl rtl use rtl-arabic-mirror to mirror this frame to arabic rtl. english only.">
+        <td class="c-want">English screen to Arabic RTL</td>
+        <td class="c-skill"><span class="sk-chip">rtl-arabic-mirror</span></td>
+        <td class="c-prompt"><div class="pbox"><span class="ptxt">Use rtl-arabic-mirror to mirror this frame to Arabic RTL. English only.</span><button class="pcopy" type="button" onclick="copyPrompt(this)" data-p="Use rtl-arabic-mirror to mirror this frame to Arabic RTL. English only.">Copy</button></div></td>
+      </tr>
+    </tbody></table></div>
+  </div>
+  <div class="skill-group">
+    <div class="grp-title"><span class="grp-n">6</span><h3>Design system</h3></div>
+    <div class="skill-table-wrap"><table class="skill-table"><thead><tr><th>I want</th><th>Skill to call</th><th>Example prompt</th></tr></thead><tbody>
+      <tr class="skill-row" data-k="design-foundations-figma tokens, type scale, spacing, colors, states system use design-foundations-figma to set up foundations for this file. english only.">
+        <td class="c-want">Tokens, type scale, spacing, colors, states</td>
+        <td class="c-skill"><span class="sk-chip">design-foundations-figma</span></td>
+        <td class="c-prompt"><div class="pbox"><span class="ptxt">Use design-foundations-figma to set up foundations for this file. English only.</span><button class="pcopy" type="button" onclick="copyPrompt(this)" data-p="Use design-foundations-figma to set up foundations for this file. English only.">Copy</button></div></td>
+      </tr>
+      <tr class="skill-row" data-k="brand-design-system-apply apply a brand to a project system use brand-design-system-apply with my brand colors and fonts. english only.">
+        <td class="c-want">Apply a brand to a project</td>
+        <td class="c-skill"><span class="sk-chip">brand-design-system-apply</span></td>
+        <td class="c-prompt"><div class="pbox"><span class="ptxt">Use brand-design-system-apply with my brand colors and fonts. English only.</span><button class="pcopy" type="button" onclick="copyPrompt(this)" data-p="Use brand-design-system-apply with my brand colors and fonts. English only.">Copy</button></div></td>
+      </tr>
+    </tbody></table></div>
+  </div>
+  <div class="skill-group">
+    <div class="grp-title"><span class="grp-n">7</span><h3>Prototype and polish</h3></div>
+    <div class="skill-table-wrap"><table class="skill-table"><thead><tr><th>I want</th><th>Skill to call</th><th>Example prompt</th></tr></thead><tbody>
+      <tr class="skill-row" data-k="full-prototype links, transitions, overlays prototype use full-prototype on these frames. english only.">
+        <td class="c-want">Links, transitions, overlays</td>
+        <td class="c-skill"><span class="sk-chip">full-prototype</span></td>
+        <td class="c-prompt"><div class="pbox"><span class="ptxt">Use full-prototype on these frames. English only.</span><button class="pcopy" type="button" onclick="copyPrompt(this)" data-p="Use full-prototype on these frames. English only.">Copy</button></div></td>
+      </tr>
+      <tr class="skill-row" data-k="full-polish final polish and token binding prototype use full-polish on this page. english only.">
+        <td class="c-want">Final polish and token binding</td>
+        <td class="c-skill"><span class="sk-chip">full-polish</span></td>
+        <td class="c-prompt"><div class="pbox"><span class="ptxt">Use full-polish on this page. English only.</span><button class="pcopy" type="button" onclick="copyPrompt(this)" data-p="Use full-polish on this page. English only.">Copy</button></div></td>
+      </tr>
+    </tbody></table></div>
+  </div>
+  <div class="skill-group">
+    <div class="grp-title"><span class="grp-n">8</span><h3>Motion</h3></div>
+    <div class="skill-table-wrap"><table class="skill-table"><thead><tr><th>I want</th><th>Skill to call</th><th>Example prompt</th></tr></thead><tbody>
+      <tr class="skill-row" data-k="motion-design animation principles and lottie motion use motion-design to plan the animation for this screen. english only.">
+        <td class="c-want">Animation principles and Lottie</td>
+        <td class="c-skill"><span class="sk-chip">motion-design</span></td>
+        <td class="c-prompt"><div class="pbox"><span class="ptxt">Use motion-design to plan the animation for this screen. English only.</span><button class="pcopy" type="button" onclick="copyPrompt(this)" data-p="Use motion-design to plan the animation for this screen. English only.">Copy</button></div></td>
+      </tr>
+      <tr class="skill-row" data-k="gsap-core, gsap-scrolltrigger, gsap-timeline, gsap-react scroll, timeline, advanced web animation motion use gsap-scrolltrigger to animate this section on scroll. english only.">
+        <td class="c-want">Scroll, timeline, advanced web animation</td>
+        <td class="c-skill"><span class="sk-chip">gsap-core</span><span class="sk-chip">gsap-scrolltrigger</span><span class="sk-chip">gsap-timeline</span><span class="sk-chip">gsap-react</span></td>
+        <td class="c-prompt"><div class="pbox"><span class="ptxt">Use gsap-scrolltrigger to animate this section on scroll. English only.</span><button class="pcopy" type="button" onclick="copyPrompt(this)" data-p="Use gsap-scrolltrigger to animate this section on scroll. English only.">Copy</button></div></td>
+      </tr>
+      <tr class="skill-row" data-k="framer-motion-react animation in react motion use framer-motion-react to add a hover and reveal animation. english only.">
+        <td class="c-want">Animation in React</td>
+        <td class="c-skill"><span class="sk-chip">framer-motion-react</span></td>
+        <td class="c-prompt"><div class="pbox"><span class="ptxt">Use framer-motion-react to add a hover and reveal animation. English only.</span><button class="pcopy" type="button" onclick="copyPrompt(this)" data-p="Use framer-motion-react to add a hover and reveal animation. English only.">Copy</button></div></td>
+      </tr>
+    </tbody></table></div>
+  </div>
+  <div class="skill-group">
+    <div class="grp-title"><span class="grp-n">9</span><h3>Review and evaluation</h3></div>
+    <div class="skill-table-wrap"><table class="skill-table"><thead><tr><th>I want</th><th>Skill to call</th><th>Example prompt</th></tr></thead><tbody>
+      <tr class="skill-row" data-k="design-critic-pro full score and verdict review use design-critic-pro to review this frame. english only.">
+        <td class="c-want">Full score and verdict</td>
+        <td class="c-skill"><span class="sk-chip">design-critic-pro</span></td>
+        <td class="c-prompt"><div class="pbox"><span class="ptxt">Use design-critic-pro to review this frame. English only.</span><button class="pcopy" type="button" onclick="copyPrompt(this)" data-p="Use design-critic-pro to review this frame. English only.">Copy</button></div></td>
+      </tr>
+      <tr class="skill-row" data-k="critique-color, critique-typography, critique-visual-hierarchy, critique-composition, critique-information-density, critique-affordance, critique-brand-consistency color, type, hierarchy, composition, density, affordance, brand review use critique-typography and critique-visual-hierarchy on this frame. english only.">
+        <td class="c-want">Color, type, hierarchy, composition, density, affordance, brand</td>
+        <td class="c-skill"><span class="sk-chip">critique-color</span><span class="sk-chip">critique-typography</span><span class="sk-chip">critique-visual-hierarchy</span><span class="sk-chip">critique-composition</span><span class="sk-chip">critique-information-density</span><span class="sk-chip">critique-affordance</span><span class="sk-chip">critique-brand-consistency</span></td>
+        <td class="c-prompt"><div class="pbox"><span class="ptxt">Use critique-typography and critique-visual-hierarchy on this frame. English only.</span><button class="pcopy" type="button" onclick="copyPrompt(this)" data-p="Use critique-typography and critique-visual-hierarchy on this frame. English only.">Copy</button></div></td>
+      </tr>
+      <tr class="skill-row" data-k="ui-quality-gates check phone overflow, touch targets, wcag review use ui-quality-gates on this page. english only.">
+        <td class="c-want">Check phone overflow, touch targets, WCAG</td>
+        <td class="c-skill"><span class="sk-chip">ui-quality-gates</span></td>
+        <td class="c-prompt"><div class="pbox"><span class="ptxt">Use ui-quality-gates on this page. English only.</span><button class="pcopy" type="button" onclick="copyPrompt(this)" data-p="Use ui-quality-gates on this page. English only.">Copy</button></div></td>
+      </tr>
+    </tbody></table></div>
+  </div>
+  <div class="skill-group">
+    <div class="grp-title"><span class="grp-n">10</span><h3>Design to code</h3></div>
+    <div class="skill-table-wrap"><table class="skill-table"><thead><tr><th>I want</th><th>Skill to call</th><th>Example prompt</th></tr></thead><tbody>
+      <tr class="skill-row" data-k="design-to-code-pro figma to production code code use design-to-code-pro to turn this frame into code. english only.">
+        <td class="c-want">Figma to production code</td>
+        <td class="c-skill"><span class="sk-chip">design-to-code-pro</span></td>
+        <td class="c-prompt"><div class="pbox"><span class="ptxt">Use design-to-code-pro to turn this frame into code. English only.</span><button class="pcopy" type="button" onclick="copyPrompt(this)" data-p="Use design-to-code-pro to turn this frame into code. English only.">Copy</button></div></td>
+      </tr>
+    </tbody></table></div>
+  </div>
+  <div class="rule-box notes"><b>Notes</b><ul><li>Skills live in Desktop, Mina -skills, final. Do not move or rename these folders.</li><li>hallmark and taste-skill are safe copies without scripts. Steps that need scripts or photos will not run.</li><li>Photos inside these skills carry their own licenses. Check before client work.</li></ul></div>
+</div>
+
+<div class="sec on" data-cat="ux">
+  <div class="sec-hdr"><div class="sec-title"><h2>UX Usability Reference</h2></div></div>
+  <div class="grid">
+    <a class="card" href="ux-reference.html" target="_blank" data-k="ux usability reference course heuristics personas research testing accessibility">
+      <div class="card-top"><div class="card-badges"><span class="bdg f">Free</span><span class="bdg-figma">Course</span></div></div>
+      <div class="card-name-row"><span class="card-name">UX Usability Reference<span class="hot"></span></span></div>
+      <div class="card-en">Whole course in 11 sections: foundations, personas, IA, prototyping, testing and heuristics. English with Arabic on one click.</div>
+      <div class="card-url">↗ Open full page</div>
+    </a>
+  </div>
+  <div class="ux-frame"><iframe id="uxFrame" data-src="ux-reference.html?embed=1" title="UX Usability Reference" loading="lazy"></iframe></div>
+</div>
 
 <div class="sec on" data-cat="icons">
   <div class="sec-hdr"><div class="sec-title"><h2>Icons Libraries</h2></div></div>
@@ -2024,7 +2287,15 @@ function clearSearch(){
   document.getElementById('clrBtn').style.display='none';
   go();
 }
+function copyPrompt(b){
+  const t=b.dataset.p;
+  const done=()=>{b.textContent='Copied';b.classList.add('ok');showToast('Prompt copied');setTimeout(()=>{b.textContent='Copy';b.classList.remove('ok')},1800)};
+  navigator.clipboard.writeText(t).then(done).catch(()=>{const ta=document.createElement('textarea');ta.value=t;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);done()});
+}
+function syncGroups(){document.querySelectorAll('.skill-group').forEach(g=>{g.style.display=g.querySelector('.skill-row:not(.hid)')?'':'none'})}
 function go(){
+  document.body.classList.toggle('tab-ux', cur==='ux');
+  if(cur==='ux'){ const f=document.getElementById('uxFrame'); if(f && !f.src) f.src=f.dataset.src; }
   const q = document.getElementById('si').value.trim().toLowerCase();
   const clr = document.getElementById('clrBtn');
   if(clr) clr.style.display = q ? 'block' : 'none';
@@ -2036,11 +2307,11 @@ function go(){
     if(s.dataset.cat==='dashboard'){ s.classList.add('on'); return; }
     if(!q){
       s.classList.add('on');
-      s.querySelectorAll('.card').forEach(c => c.classList.remove('hid'));
+      s.querySelectorAll('.card,.skill-row').forEach(c => c.classList.remove('hid')); syncGroups();
       tot++;
       return;
     }
-    const cards = s.querySelectorAll('.card');
+    const cards = s.querySelectorAll('.card,.skill-row');
     let vis = false;
     cards.forEach(card => {
       const txt = [(card.dataset.k||''),(card.querySelector('.card-name')?.textContent||''),(card.querySelector('.card-en')?.textContent||'')].join(' ').toLowerCase();
@@ -2048,6 +2319,7 @@ function go(){
       card.classList.toggle('hid', !ok);
       if(ok){ vis=true; tot++; }
     });
+    syncGroups();
     s.classList.toggle('on', vis);
   });
   document.getElementById('emp').style.display = (q && tot===0) ? 'block' : 'none';
